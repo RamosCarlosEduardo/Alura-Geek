@@ -1,0 +1,13 @@
+.header__caixa {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	padding: 16px;
+}
+
+.header__search {
+	width: 24px;
+	height: 24px;
+	background-image: url("../img/Search.svg");
+}

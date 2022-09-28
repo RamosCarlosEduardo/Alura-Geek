@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&display=swap');
+@import url('buttons.css');
+@import url('header.css');
+@import url('banner-promo.css');
+
+:root {
+	--branco: #FFF;
+	--azul-100: #2A7AE4;
+	--azul-80: #5595E9;
+	--azul-20: #D4E4FA;
+	--fonte-padrao: 'Raleway', sans-serif;
+}
+
+body {
+	font-family: var(--fonte-padrao);
+	font-style: normal;
+}
+
+

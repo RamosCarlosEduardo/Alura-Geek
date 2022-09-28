@@ -1,0 +1,41 @@
+.button {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+.button--g {
+	padding: 16px;
+	gap: 10px;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 19px;
+}
+
+.button--p {
+	padding: 12px 16px;
+	gap: 10px;
+	font-weight: 600;
+	font-size: 14px;
+	line-height: 16px;
+}
+
+.button--bg {
+	background: var(--azul-100);
+	color: var(--branco);
+}
+.button--bg:hover {
+	background: var(--azul-80);
+}
+
+.button--transp {
+	background: transparent;
+	border: 1px solid var(--azul-100);
+	color: var(--azul-100);
+}
+
+.button--transp:hover {
+	background: var(--azul-20);
+	border: 1px solid var(--azul-100);
+	color: var(--azul-100);
+}
