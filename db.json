@@ -1,64 +1,52 @@
 {
-  "Star Wars": [
+  "starwars": [
     {
-
       "id": 1,
       "nome": "Dart Vader",
       "img": "https://st2.depositphotos.com/1900167/10244/i/600/depositphotos_102441634-stock-photo-people-of-501st-legion-take.jpg",
       "preco": 60.01,
       "descricao": "Star Wars (Brasil: Guerra nas Estrelas / Portugal: Guerra das Estrelas) é uma franquia do tipo space opera estadunidense criada pelo cineasta George Lucas, que conta com uma série de nove filmes de fantasia científica e dois spin-offs.",
       "alt": "Homem com máscara e capacete preto"
-
     },
     {
-
       "id": 2,
       "nome": "Sabres de luz",
       "img": "https://st2.depositphotos.com/1482677/9746/v/450/depositphotos_97468974-stock-illustration-master-weapon-equipment.jpg",
       "preco": 60.02,
       "descricao": "As cores dos sabres de luz eram originados nas respectivas cores dos cristais neles contidos. Esses cristais eram comumente encontrados na Caverna de Cristal no planeta Ilum ou em outros planetas que também possuíam cristais.",
       "alt": "duas espadas cruzadas"
-
     },
     {
-
       "id": 3,
       "nome": "Capacete Stormtrooper Branco",
       "img": "https://st4.depositphotos.com/21486874/31106/i/600/depositphotos_311060406-stock-photo-london-uk-december-27th-2017.jpg",
       "preco": 60.03,
       "descricao": "Os Stormtroopers são a evolução dos antigos Clone Troopers das Guerras Clônicas e são superiores a eles em tudo. Sua armadura era mais resistente e bem equipada, suas armas eram superiores até sua devoção é mais sólida do que a dos soldados clones.",
       "alt": "Capacete branco"
-
     },
     {
-
       "id": 4,
       "nome": "Mini yoda",
       "img": "https://st.depositphotos.com/59096128/52227/v/1600/depositphotos_522275704-stock-illustration-set-cute-stickers-stickers-star.jpg",
       "preco": 60.04,
       "descricao": "N'Kata Del Gormo foi um Mestre Jedi Hysalriano que viveu durante os tempos da República Galáctica. Ele encontrou e treinou Yoda e seu amigo Humano ao notar a capacidade de ambos influenciada pela Força.",
       "alt": "Vários Extra Terrestres verdes"
-
     },
     {
-
       "id": 5,
       "nome": "Mestre Yoda",
       "img": "https://st.depositphotos.com/49910134/54031/v/600/depositphotos_540318114-stock-illustration-character-vector-baby-yoda-clipart.jpg",
       "preco": 60.05,
       "descricao": "N'Kata Del Gormo foi um Mestre Jedi Hysalriano que viveu durante os tempos da República Galáctica. Ele encontrou e treinou Yoda e seu amigo Humano ao notar a capacidade de ambos influenciada pela Força.",
       "alt": "Extra terrestre verde"
-
     },
     {
-
       "id": 6,
       "nome": "Mestre Yoda 2",
       "img": "https://st.depositphotos.com/61087132/53296/v/600/depositphotos_532966194-stock-illustration-art-illustration-yoda-which-fictional.jpg",
       "preco": 60.06,
       "descricao": "N'Kata Del Gormo foi um Mestre Jedi Hysalriano que viveu durante os tempos da República Galáctica. Ele encontrou e treinou Yoda e seu amigo Humano ao notar a capacidade de ambos influenciada pela Força.",
       "alt": "Extra terrestre verde."
-
     },
     {
       "id": 7,
@@ -68,5 +56,5 @@
       "descricao": "Os Stormtroopers são a evolução dos antigos Clone Troopers das Guerras Clônicas e são superiores a eles em tudo. Sua armadura era mais resistente e bem equipada, suas armas eram superiores até sua devoção é mais sólida do que a dos soldados clones.",
       "alt": "Guerreiro com armadura branca"
     }
-    ]
+  ]
 }
