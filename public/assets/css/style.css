@@ -3,19 +3,26 @@
 @import url('header.css');
 @import url('banner-promo.css');
 @import url('grid-cards.css');
+@import url('footer.css');
 
 :root {
 	--branco: #FFF;
-	--preto-cards: #464646;
+	--preto-100: #464646;
+	--preto-50: #A2A2A2;
 	--azul-100: #2A7AE4;
 	--azul-80: #5595E9;
 	--azul-20: #D4E4FA;
+	--azul-bg: #EAF2FD;
 	--fonte-padrao: 'Raleway', sans-serif;
 }
 
 body {
 	font-family: var(--fonte-padrao);
 	font-style: normal;
+}
+
+footer {
+	background: var(--azul-bg);
 }
 
 

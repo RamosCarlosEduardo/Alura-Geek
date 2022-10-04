@@ -1,0 +1,93 @@
+.footer {
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	/*gap: 32px;*/
+}
+
+.footer__logo {
+	width: 176px;
+	height: 50px;
+}
+.footer-links, .fale-conosco {
+	width: 100%;
+	padding: 16px;
+}
+.footer-links, .footer-links__lista{
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 16px;
+}
+
+.footer-links {
+	margin-bottom: 32px;
+}
+
+.footer-links__link {
+	font-weight: 500;
+	font-size: 16px;
+	line-height: 19px;
+	color: var(--preto-100);
+}
+/*       form     */
+.fale-conosco {
+	text-align: left;
+	margin-bottom: 16px;
+}
+
+.form__fieldset {
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	gap: 16px;
+	margin: 8px 0;
+}
+
+.form__legend{
+	font-weight: 700;
+	font-size: 16px;
+	line-height: 19px;
+	color: var(--preto-100);
+}
+.form__caixa {
+	position: relative;
+	width: 100%;
+	height: 56px;
+	border-radius: 4px;
+}
+
+.form__nome {
+	height: 100%;
+	width: 100%;
+	padding: 0 12px;
+	padding-top: 16px;
+	font-weight: 400;
+	font-size: 16px;
+	color: var(--preto-100);
+}
+
+.form__lbl-nome {
+	position: absolute;
+	font-weight: 400;
+	font-size: 12px;
+	line-height: 16px;
+	color: var(--preto-50);
+	left: 12px;
+	top: 8px;
+}
+
+.form__text {
+	padding: 12px;
+}
+
+.footer__copyright {
+	background: #FFF;
+	padding: 32px;
+	font-weight: 500;
+	font-size: 16px;
+	line-height: 19px;
+	color: var(--preto-100);
+}
