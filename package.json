@@ -1,0 +1,23 @@
+{
+  "name": "alura-geek",
+  "version": "1.0.0",
+  "description": "link to online json-server\r https://my-json-server.typicode.com/<your-username>/<your-repo>",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RamosCarlosEduardo/Alura-Geek.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RamosCarlosEduardo/Alura-Geek/issues"
+  },
+  "homepage": "https://github.com/RamosCarlosEduardo/Alura-Geek#readme",
+  "dependencies": {
+    "json-server": "^0.17.0"
+  }
+}
