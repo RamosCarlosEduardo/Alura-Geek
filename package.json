@@ -1,8 +1,8 @@
 {
   "name": "alura-geek",
   "version": "1.0.0",
-  "description": "link to online json-server\r https://my-json-server.typicode.com/<your-username>/<your-repo>",
-  "main": "index.js",
+  "description": "alura geek",
+  "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
