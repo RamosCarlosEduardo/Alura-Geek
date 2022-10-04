@@ -21,7 +21,7 @@
       "preco": 60.01,
       "descricao": "Star Wars (Brasil: Guerra nas Estrelas / Portugal: Guerra das Estrelas) é uma franquia do tipo space opera estadunidense criada pelo cineasta George Lucas, que conta com uma série de nove filmes de fantasia científica e dois spin-offs.",
       "alt": "Homem com máscara e capacete preto",
-      "categoriasID": 1
+      "categoriaId": 1
     },
     {
       "id": 2,
@@ -30,7 +30,7 @@
       "preco": 60.02,
       "descricao": "As cores dos sabres de luz eram originados nas respectivas cores dos cristais neles contidos. Esses cristais eram comumente encontrados na Caverna de Cristal no planeta Ilum ou em outros planetas que também possuíam cristais.",
       "alt": "duas espadas cruzadas",
-      "categoriasID": 1      
+      "categoriaId": 1      
     },
     {
       "id": 3,
@@ -39,7 +39,7 @@
       "preco": 60.03,
       "descricao": "Os Stormtroopers são a evolução dos antigos Clone Troopers das Guerras Clônicas e são superiores a eles em tudo. Sua armadura era mais resistente e bem equipada, suas armas eram superiores até sua devoção é mais sólida do que a dos soldados clones.",
       "alt": "Capacete branco",
-      "categoriasID": 1
+      "categoriaId": 1
     },
     {
       "id": 4,
@@ -48,7 +48,7 @@
       "preco": 60.04,
       "descricao": "N'Kata Del Gormo foi um Mestre Jedi Hysalriano que viveu durante os tempos da República Galáctica. Ele encontrou e treinou Yoda e seu amigo Humano ao notar a capacidade de ambos influenciada pela Força.",
       "alt": "Vários Extra Terrestres verdes",
-      "categoriasID": 1
+      "categoriaId": 1
     },
     {
       "id": 5,
@@ -57,7 +57,7 @@
       "preco": 60.05,
       "descricao": "N'Kata Del Gormo foi um Mestre Jedi Hysalriano que viveu durante os tempos da República Galáctica. Ele encontrou e treinou Yoda e seu amigo Humano ao notar a capacidade de ambos influenciada pela Força.",
       "alt": "Extra terrestre verde",
-      "categoriasID": 1
+      "categoriaId": 1
     },
     {
       "id": 6,
@@ -66,7 +66,7 @@
       "preco": 60.06,
       "descricao": "N'Kata Del Gormo foi um Mestre Jedi Hysalriano que viveu durante os tempos da República Galáctica. Ele encontrou e treinou Yoda e seu amigo Humano ao notar a capacidade de ambos influenciada pela Força.",
       "alt": "Extra terrestre verde.",
-      "categoriasID": 1
+      "categoriaId": 1
     },
     {
       "id": 7,
@@ -75,7 +75,7 @@
       "preco": 60.07,
       "descricao": "Os Stormtroopers são a evolução dos antigos Clone Troopers das Guerras Clônicas e são superiores a eles em tudo. Sua armadura era mais resistente e bem equipada, suas armas eram superiores até sua devoção é mais sólida do que a dos soldados clones.",
       "alt": "Guerreiro com armadura branca",
-      "categoriasID": 1
+      "categoriaId": 1
     },  
     {
       "id": 8,
@@ -84,7 +84,7 @@
       "preco": 60.08,
       "descricao": "Imagem 3 de 3 de Controle joystick sem fio Microsoft Xbox Wireless Controller Series X|S robot white Novo  |  12800 vendidos Controle joystick sem fio Microsoft Xbox Wireless Controller Series X|S robot white",
       "alt": "Controle de videogame",
-      "categoriasID": 2
+      "categoriaId": 2
     },
     {
       "id": 9,
@@ -93,7 +93,7 @@
       "preco": 60.09,
       "descricao": "FIFA 14 é um jogo eletrônico de simulação de futebol desenvolvido pela EA Sports e publicado pela Electronic Arts. Foi lançado em Setembro de 2013 para PlayStation 2, PlayStation 3, PlayStation Portable, PlayStation Vita, XBOX 360, Wii, Nintendo",
       "alt": "Cd de jogo de futebol",
-      "categoriasID": 2
+      "categoriaId": 2
     },
     {
       "id": 10,
@@ -102,7 +102,7 @@
       "preco": 60.1,
       "descricao": "Controle de video Game antigo - Retrô",
       "alt": "controle de video game antigo",
-      "categoriasID": 2
+      "categoriaId": 2
     },
     {
       "id": 11,
@@ -111,7 +111,7 @@
       "preco": 60.11,
       "descricao": "Compre Controle de volante universal automotivo DVD MP3 multimídia / Atende ligação / Compatível com todos os rádios. na Shopee Brasil! ENVIO IMEDIATO.",
       "alt": "Controle em formato de volante",
-      "categoriasID": 2
+      "categoriaId": 2
     },
     {
       "id": 12,
@@ -120,7 +120,7 @@
       "preco": 60.12,
       "descricao": "Jogar não Tem Limites. Desfrute do carregamento extremamente rápido com o SSD de altíssima velocidade, uma imersão mais profunda com suporte a feedback tátil, gatilhos adaptáveis e áudio 3D, além de uma geração inédita de jogos incríveis para Console Playstation 5 - PS5",
       "alt": "Console playstation 5",
-      "categoriasID": 2
+      "categoriaId": 2
     },
     {
       "id": 13,
@@ -129,7 +129,7 @@
       "preco": 60.13,
       "descricao": "Cabine Portatil Retrô Colecionavel Street Fighter II Champion Edition Micro Player",
       "alt": "Maquina de jogos retrô",
-      "categoriasID": 2
+      "categoriaId": 2
     },
     {
       "id": 14,
@@ -138,7 +138,7 @@
       "preco": 60.14,
       "descricao": "A personagem e jogo tiveram o nome Puck-Man, do termo Japonês paku-paku, que significa a boca de alguém a abrir-se e fechar-se.",
       "alt": "Circulo amarelo com olho e boca",
-      "categoriasID": 2
+      "categoriaId": 2
     },
     {
      "id": 15,
@@ -147,7 +147,7 @@
      "preco": 60.15,
      "descricao": "One Piece é uma série de mangá escrita e ilustrada por Eiichiro Oda. Os capítulos têm sido serializados na revista Weekly Shōnen Jump desde 22 de julho de 1997, com os capítulos compilados e publicados em 100 volumes tankōbon pela editora Shueisha até setembro de 2021.",
      "alt": "Adolescente com chapéu de palha",
-     "categoriasID": 3
+     "categoriaId": 3
    },
    {
     "id": 16,
@@ -156,7 +156,7 @@
     "preco": 60.16,
     "descricao": "One Punch-Man é uma série de webcomic criada pelo autor com o pseudónimo One,[5] e é publicada desde 2009. A série rapidamente tornou-se um fenómeno viral, alcançando mais de 7,9 milhões de acessos, em junho de 2012.",
     "alt": "Homem careca usando capa",
-    "categoriasID": 3
+    "categoriaId": 3
   },
   {
     "id": 17,
@@ -165,7 +165,7 @@
     "preco": 60.17,
     "descricao": "Nanatsu no Taizai (Os sete pecados capitais), é uma série de mangá escrito e ilustrado por Nakaba Suzuki. Foi serializado na revista Weekly Shōnen Magazine da Kodansha de outubro de 2012 até março de 2020, com os capítulos coletados em quarenta e um volumes de tankōbon.",
     "alt": "Menino loiro com tatuagem na testa",
-    "categoriasID": 3
+    "categoriaId": 3
   },
   {
     "id": 18,
@@ -174,7 +174,7 @@
     "preco": 60.18,
     "descricao": "Naruto é uma série de mangá escrita e ilustrada por Masashi Kishimoto, que conta a história de Naruto Uzumaki, um jovem ninja que constantemente procura por reconhecimento e sonha em se tornar Hokage, o ninja líder de sua vila.",
     "alt": "Ninja loiro usando bandana",
-    "categoriasID": 3
+    "categoriaId": 3
   },
   {
     "id": 19,
@@ -183,7 +183,7 @@
     "preco": 60.19,
     "descricao": "Dragon Ball é uma franquia de mídia japonesa criada por Akira Toriyama. Originalmente iniciada com uma série de mangá que foi escrita e ilustrada por Toriyama, teve os seus capítulos serializados na revista Weekly Shonen Jump de 1984 a 1995, com os seus 519 capítulos compilados em 42 volumes tankōbon e publicados pela editora Shueisha.",
     "alt": "Homem de cabelo azul",
-    "categoriasID": 3
+    "categoriaId": 3
   },
   {
     "id": 20,
@@ -192,7 +192,7 @@
     "preco": 60.2,
     "descricao": "Samurai X é uma série de mangá criada pelo artista Nobuhiro Watsuki e posteriormente adaptada em anime. A série, ambientada nos primeiros anos da Era Meiji no Japão, conta a história de Kenshin Himura um pacífico espadachim que prometeu nunca mais matar.",
     "alt": "Samurai com espada na mão",
-    "categoriasID": 3
+    "categoriaId": 3
   },
   {
     "id": 21,
@@ -201,7 +201,7 @@
     "preco": 60.21,
     "descricao": "Voluptas voluptatum quibusdam similique, class debitis alias maecenas eveniet ridiculus, facilis fusce! Ullam conubia? Sociis, minima malesuada habitasse distinctio sequi aliqua malesuada. Quisque deleniti proin expedita, aliquid litora. Iste recusandae? Commodo, quia ridiculus doloribus vero dictum? Penatibus donec placeat faucibus, dolorum do. Animi porta anim magnam",
     "alt": "Homem com cabelo cumprido, na cor marrom",
-    "categoriasID": 3
+    "categoriaId": 3
   }
 ]
 }
