@@ -2,9 +2,11 @@
 @import url('buttons.css');
 @import url('header.css');
 @import url('banner-promo.css');
+@import url('grid-cards.css');
 
 :root {
 	--branco: #FFF;
+	--preto-cards: #464646;
 	--azul-100: #2A7AE4;
 	--azul-80: #5595E9;
 	--azul-20: #D4E4FA;

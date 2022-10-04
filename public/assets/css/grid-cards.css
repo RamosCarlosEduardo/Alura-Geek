@@ -1,0 +1,73 @@
+.grid-cards {
+	padding: 16px;
+	display: grid;
+	grid-template-areas:
+	"titulo ver-tudo"
+	"card1 card2"
+	"card3 card4";
+	grid-gap: 16px;
+	grid-template-columns: repeat(2, calc(50vw - 24px));
+}
+.grid-cards__ver-tudo {
+	justify-self: flex-end;
+}
+
+.grid-cards__title {
+	grid-area: titulo;
+		font-weight: 700;
+	font-size: 22px;
+	line-height: 26px;
+	color: var(--preto-cards);
+}
+
+.grid-cards__ver-tudo {
+	grid-area: ver-tudo;
+}
+
+.card:nth-child(1) {
+	grid-area: card1;
+}
+.card:nth-child(2) {
+	grid-area: card2;
+}
+.card:nth-child(3) {
+	grid-area: card3;
+}
+.card:nth-child(4) {
+	grid-area: card4;
+}
+
+.card {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.card__img {
+	width: 100%;
+	height: 174px;
+}
+
+.card__titulo {
+
+	font-style: normal;
+font-weight: 500;
+font-size: 14px;
+line-height: 16px;
+color: var(--preto-cards);
+}
+
+.card__preco {
+	font-weight: 700;
+	font-size: 16px;
+	line-height: 19px;
+	color: var(--preto-cards);
+}
+
+.produtos__link {
+	font-style: normal;
+font-weight: 700;
+font-size: 14px;
+line-height: 16px;
+color: var(--azul-100);
+}

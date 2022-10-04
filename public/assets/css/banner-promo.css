@@ -13,6 +13,7 @@
 				url('../img/bg-banner-promo.png');
 	background-size: contain;
 	background-position: center;
+	height: 192px;
 }
 
 .banner-promo__title {
