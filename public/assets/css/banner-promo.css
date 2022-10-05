@@ -6,12 +6,13 @@
 	padding: 16px;
 	gap: 16px;
 	background: linear-gradient(0deg, rgba(0, 0, 0, 0.2),
- 				rgba(0, 0, 0, 0.2)),
-				linear-gradient(180deg,
-				rgba(0, 0, 0, 0) 41.15%,
-				rgba(0, 0, 0, 0.8) 100%),
-				url('../img/bg-banner-promo.png');
-	background-size: contain;
+		rgba(0, 0, 0, 0.2)),
+	linear-gradient(180deg,
+		rgba(0, 0, 0, 0) 41.15%,
+		rgba(0, 0, 0, 0.8) 100%),
+	url('../img/bg-banner-promo.png');
+	background-size: cover;
+	background-repeat: no-repeat;
 	background-position: center;
 	height: 192px;
 }
@@ -28,5 +29,35 @@
 	font-size: 14px;
 	line-height: 16px;
 	color: var(--branco);
+
+}
+
+@media screen and (min-width: 768px) {
+
+	.banner-promo {
+		padding: 32px;
+		height: 352px;
+	}
+
+	.banner-promo__title {
+		font-weight: 700;
+		font-size: 52px;
+		line-height: 61px;
+		
+	}
+
+	.banner-promo__text {
+		font-weight: 700;
+		font-size: 22px;
+		line-height: 26px;
+
+	}
+
+}
+
+@media screen and (min-width: 1024px) {
+	.banner-promo {
+		padding-inline: 10vw;
+	}
 
 }

@@ -16,7 +16,7 @@ function createGridCards () {
 
 		let sectionTitle = document.createElement("h2")
 		sectionTitle.classList.add("grid-cards__title")
-		sectionTitle.innerHTML = el.nome
+		sectionTitle.innerHTML = el.nome.str
 		newSection.appendChild(sectionTitle)
 
 		let verTudo = document.createElement("a")
@@ -31,7 +31,7 @@ function createGridCards () {
 
 function createCards (el, section){
 
-	for (let i = 1; i <= 4; i++){
+	for (let i = 1; i <= 5; i++){
 		let divCard = document.createElement("div")
 		divCard.classList.add("card")
 		

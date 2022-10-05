@@ -6,8 +6,58 @@
 	padding: 16px;
 }
 
-.header__search {
+.header__link {
+	width: 25%;
+}
+
+.header__search[data-search-input] {
+	padding: 8px 16px;
+	background-color: var(--preto-5);
+	border-radius: 20px;
+	width: 272px;
+	height: 40px;
+
+	position: relative;
+    left: calc(50vw - (272px / 2));
+}
+
+.header__search[data-search-input]::placeholder {
+	color: var(--preto-50);
+	display: flex;
+	background: url("../img/icon-search.svg");
+	background-repeat: no-repeat;
+	background-position: 100%;
+}
+
+.header__search[data-search-button] {
 	width: 24px;
 	height: 24px;
-	background-image: url("../img/Search.svg");
+	background-size: cover;
+	background-image: url("../img/icon-search.svg");
+	cursor: pointer;
+}
+.header__search[data-search-button="fechar"] {
+	background-image: url("../img/icon-fechar.svg");
+}
+
+@media screen and (min-width: 768px) {
+	.header__search[data-search-input] {
+		display: block;
+		position: inherit;
+	}
+
+	.header__search[data-search-button] {
+		display: none;
+	}
+
+	.header__img[data-logo], .header__link[data-login] {
+		display: block;
+	}
+}
+
+@media screen and (min-width: 1024px) {
+	.header__caixa {
+		padding-inline: 10vw;
+	}
+
 }

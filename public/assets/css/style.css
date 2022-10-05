@@ -9,6 +9,7 @@
 	--branco: #FFF;
 	--preto-100: #464646;
 	--preto-50: #A2A2A2;
+	--preto-5: #F5F5F5;
 	--azul-100: #2A7AE4;
 	--azul-80: #5595E9;
 	--azul-20: #D4E4FA;
@@ -25,4 +26,6 @@ footer {
 	background: var(--azul-bg);
 }
 
-
+.hidden {
+	display: none;
+}

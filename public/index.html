@@ -10,9 +10,10 @@
 <body>
 	<header class="header">
 		<div class="header__caixa">
-			<img src="./assets/img/Logo.svg" alt="Logo da Alura Geek" class="header__img">
-			<a href="#" class="button button--p button--transp header__link">Login</a>
-			<button type="button" class="header__search"></button>
+			<img src="./assets/img/logo.svg" data-logo alt="Logo da Alura Geek" class="header__img">
+			<input type="text" data-search-input class="header__search hidden" placeholder="O que deseja encontrar?">
+			<a href="#" data-login class="button button--p button--transp header__link">Login</a>
+			<button type="button" data-search-button="" class="header__search"></button>
 		</div>
 	</header>
 	<main>
@@ -51,41 +52,43 @@
 		</section> -->
 	</main>
 	<footer class="footer">
-		<div class="footer-links">
-			<img src="./assets/img/logo.png" alt="Logo Alura Geek" class="footer__logo">
-			<ul class="footer-links__lista">
-				<li class="footer-links__item">
-					<a href="#" class="footer-links__link">Quem somos nós</a>
-				</li>
-				<li class="footer-links__item">
-					<a href="#" class="footer-links__link">Política de privacidade</a>
-				</li>
-				<li class="footer-links__item">
-					<a href="#" class="footer-links__link">Programa fidelidade</a>
-				</li>
-				<li class="footer-links__item">
-					<a href="#" class="footer-links__link">Nossas lojas</a>
-				</li>
-				<li class="footer-links__item">
-					<a href="#" class="footer-links__link">Quero ser franqueado</a>
-				</li>
-				<li class="footer-links__item">
-					<a href="#" class="footer-links__link">Anuncie aqui</a>
-				</li>
-			</ul>
-		</div>
-		<div class="fale-conosco">
-			<form action="#" class="form">
-				<legend class="form__legend">Fale conosco</legend>
-				<fieldset class="form__fieldset">
-					<div class="form__caixa">
-						<input type="text" class="form__nome" id="form__nome">
-						<label for="form__nome" class="form__lbl-nome">Nome</label>
-					</div>
-					<textarea name="textarea" placeholder="Escreva sua mensagem" class="form__text" cols="30" rows="10"></textarea>
-				</fieldset>
-				<button class="button button--bg button--p">Enviar mensagem</button>
-			</form>
+		<div class="caixa-link-fale">
+			<div class="footer-links">
+				<img src="./assets/img/logo.png" alt="Logo Alura Geek" class="footer__logo">
+				<ul class="footer-links__lista">
+					<li class="footer-links__item">
+						<a href="#" class="footer-links__link">Quem somos nós</a>
+					</li>
+					<li class="footer-links__item">
+						<a href="#" class="footer-links__link">Política de privacidade</a>
+					</li>
+					<li class="footer-links__item">
+						<a href="#" class="footer-links__link">Programa fidelidade</a>
+					</li>
+					<li class="footer-links__item">
+						<a href="#" class="footer-links__link">Nossas lojas</a>
+					</li>
+					<li class="footer-links__item">
+						<a href="#" class="footer-links__link">Quero ser franqueado</a>
+					</li>
+					<li class="footer-links__item">
+						<a href="#" class="footer-links__link">Anuncie aqui</a>
+					</li>
+				</ul>
+			</div>
+			<div class="fale-conosco">
+				<form action="#" class="form">
+					<legend class="form__legend">Fale conosco</legend>
+					<fieldset class="form__fieldset">
+						<div class="form__caixa">
+							<input type="text" class="form__nome" id="form__nome">
+							<label for="form__nome" class="form__lbl-nome">Nome</label>
+						</div>
+						<textarea name="textarea" placeholder="Escreva sua mensagem" class="form__text" cols="30" rows="10"></textarea>
+					</fieldset>
+					<button class="button button--bg button--p">Enviar mensagem</button>
+				</form>
+			</div>
 		</div>
 		<div class="footer__copyright">
 			<p>Desenvolvido por Carlos Eduardo Ramos <br> 2022</p>
@@ -95,5 +98,6 @@
 
 
 	<script src="./assets/js/main.js"></script>
+	<script src="./assets/js/header.js"></script>
 </body>
 </html>
