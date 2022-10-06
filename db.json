@@ -2,15 +2,15 @@
   "categorias":[
   { 
     "id": 1,
-    "nome": "starwars"
+    "nome": "StarWars"
   },
   {
     "id": 2,
-    "nome": "console"
+    "nome": "Console"
   },
   {
     "id": 3,
-    "nome": "diversos"
+    "nome": "Diversos"
   }
 ],
   "produtos": [

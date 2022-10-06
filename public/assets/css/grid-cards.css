@@ -6,7 +6,8 @@
 	"card1 card2"
 	"card3 card4";
 	grid-gap: 16px;
-	grid-template-columns: repeat(2, calc(50vw - 24px));
+	/*50vw:  metade da tela, 8px metade do gap pra cada lado, 16px padding*/
+	grid-template-columns: repeat(2, calc(50vw - 8px - 16px));
 }
 .grid-cards__ver-tudo {
 	justify-self: flex-end;
@@ -45,17 +46,22 @@
 .card {
 	display: flex;
 	flex-direction: column;
+	align-items: center;
+	text-align: center;
 	gap: 8px;
-	padding: 5px;
 	border: solid 1px black;
 	border-radius: 5px;
 	box-shadow: 2px 2px 5px grey;
+	padding-bottom: 1rem;
+	max-height: 20rem;
+	overflow: hidden;
 }
 
 .card__img {
 	width: 100%;
-	height: 50%;
+	height: 60%;
 }
+
 
 .card__titulo {
 	font-style: normal;
@@ -78,6 +84,7 @@
 	font-size: 14px;
 	line-height: 16px;
 	color: var(--azul-100);
+	margin-top: auto;
 }
 
 @media screen and (min-width: 768px) {
@@ -88,6 +95,21 @@
 		"card1 card2 card3 card4";
 		grid-template-columns: repeat(4, calc(25vw - 24px));
 	}
+	.card__titulo {
+		font-size: 16px;
+		line-height: 18px;
+	}
+
+	.card__preco {
+		font-size: 18px;
+		line-height: 20px;
+	}
+
+	.produtos__link {
+		font-size: 16px;
+		line-height: 18px;
+	}
+
 
 }
 
@@ -101,8 +123,30 @@
 		"card1 card2 card3 card4 card5";
 		
 	}
+	.card {
+		max-height: 22rem;
+	}
 
 	.card:nth-of-type(5) {
 		display: flex;
 	} 
+
+	.card__titulo {
+		font-size: 20px;
+		line-height: 22px;
+	}
+
+	.card__preco {
+		font-size: 22px;
+		line-height: 24px;
+	}
+
+	.produtos__link {
+		font-size: 20px;
+		line-height: 22px;
+	}
+
+	.card__img {
+		height: 60%;
+	}
 }

@@ -116,3 +116,9 @@
 		height: 82px;
 	}
 }
+@media screen and (min-width: 768px) {
+
+	.caixa-link-fale {
+		padding: 16px 10vw;
+	}
+}

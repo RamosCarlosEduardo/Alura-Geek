@@ -1,13 +1,41 @@
+var params = window.location.search.substring(1).split('&');
+//Criar objeto que vai conter os parametros
+var paramArray = {};
+//Passar por todos os parametros
+for(var i=0; i<params.length; i++) {
+    //Dividir os parametros chave e valor
+    var param = params[i].split('=');
+
+    //Adicionar ao objeto criado antes
+    paramArray[param[0]] = param[1];
+}
+
+verificaPage(paramArray.page)
+
+async function verificaPage (page) {
+	await fetchDb()
+	
+	console.log(page)
+	if (page === undefined || page === "home") {
+		createGridCards();
+	} else if (page === "login") {
+		alert('pagina de login weeeee')
+	}
+	
+}
+
+
 let db = [];
 let main = document.querySelector('main')
 
-fetch('https://loja-alura-geek.herokuapp.com/categorias?_embed=produtos')
-	.then(response => response.json())
-	.then(data => {
-		db = data
-		createGridCards();
-	});
-
+async function fetchDb () {
+	await fetch('https://loja-alura-geek.herokuapp.com/categorias?_embed=produtos')
+			.then(response => response.json())
+			.then(data => {
+				db = data
+			});
+}
+	
 function createGridCards () {
 	db.forEach((el) => {
 		let newSection = document.createElement("section")
@@ -16,7 +44,7 @@ function createGridCards () {
 
 		let sectionTitle = document.createElement("h2")
 		sectionTitle.classList.add("grid-cards__title")
-		sectionTitle.innerHTML = el.nome.str
+		sectionTitle.innerHTML = el.nome
 		newSection.appendChild(sectionTitle)
 
 		let verTudo = document.createElement("a")
@@ -34,7 +62,7 @@ function createCards (el, section){
 	for (let i = 1; i <= 5; i++){
 		let divCard = document.createElement("div")
 		divCard.classList.add("card")
-		
+
 		let cardImg = document.createElement("img")
 		cardImg.classList.add("card__img")
 		cardImg.setAttribute("alt", `${el.produtos[i].alt}`)
@@ -61,4 +89,5 @@ function createCards (el, section){
 		section.appendChild(divCard)
 	}
 }
+
 
