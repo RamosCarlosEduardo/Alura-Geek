@@ -183,11 +183,10 @@ function routeAllproducts () {
 
 function fetchProducts(currentUrl) {
 	let productsHandler = document.getElementById('allproducts-handler')
-	if (productsHandler) {
-		productsHandler.remove();
-	}
+	if (productsHandler) {productsHandler.remove()}
+	
 	fetch(currentUrl)
-		.then( response => response.json())
+		.then(response => response.json())
 		.then(data => {
 			dbPag = data
 			createAllProductsGrid()
@@ -215,8 +214,6 @@ function createAllProductsGrid() {
 
 	createAllProductsCards(newSection);
 }
-
-
 
 function createAllProductsCards(section) {
 	dbPag.forEach(produto => {
@@ -287,16 +284,21 @@ function parseLinkHeader( linkHeader ) {
 	const linkHeadersArray = linkHeader.split( ", " ).map( header => header.split( "; " ) );
 	const linkHeadersMap = linkHeadersArray.map( header => {
 		const thisHeaderRel = header[1].replace( /"/g, "" ).replace( "rel=", "" );
-		const thisHeaderUrl = header[0].slice( 1, -1 );
+		const thisHeaderUrl = header[0].slice( 1, -1 ).replace('http', 'https');
 		return [ thisHeaderRel, thisHeaderUrl ]
+
 	} );
+	console.log(linkHeadersMap)
 	return Object.fromEntries( linkHeadersMap );
 }
 
-
+var prateste;
 function paginate( direction ) {
+
 	fetch(currentUrl).then( response => {
 		let linkHeaders = parseLinkHeader( response.headers.get("Link") );
+		
+		prateste = linkHeaders
 		if ( !!linkHeaders[direction] ) {
 			currentUrl = linkHeaders[direction];
 			fetchProducts( linkHeaders[direction] );

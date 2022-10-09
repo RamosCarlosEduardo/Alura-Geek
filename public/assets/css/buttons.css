@@ -49,19 +49,3 @@
 	width: 150px;
 	cursor: pointer;
 }
-
-.button-pag--first {
-	/*background: blue;*/
-}
-
-.button-pag--next {
-	/*background: green;*/
-}
-
-.button-pag--prev {
-	/*background: yellow;*/
-}
-
-.button-pag--last {
-	/*background: red;*/
-}
