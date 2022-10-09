@@ -41,3 +41,27 @@
 	border: 1px solid var(--azul-100);
 	color: var(--azul-100);
 }
+
+.button-pag {
+	font-weight: 700;
+	font-size: 1.2rem;
+	border-radius: 5px;
+	width: 150px;
+	cursor: pointer;
+}
+
+.button-pag--first {
+	/*background: blue;*/
+}
+
+.button-pag--next {
+	/*background: green;*/
+}
+
+.button-pag--prev {
+	/*background: yellow;*/
+}
+
+.button-pag--last {
+	/*background: red;*/
+}

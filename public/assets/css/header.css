@@ -17,8 +17,8 @@
 	width: 272px;
 	height: 40px;
 
-	position: relative;
-    left: calc(50vw - (272px / 2));
+	/*position: relative;
+    left: calc(50vw - (272px / 2));*/
 }
 
 .header__search[data-search-input]::placeholder {

@@ -25,20 +25,19 @@
 	grid-area: ver-tudo;
 }
 
-.card:nth-of-type(1) {
+.card--home:nth-of-type(1) {
 	grid-area: card1;
 }
-.card:nth-of-type(2) {
+.card--home:nth-of-type(2) {
 	grid-area: card2;
 }
-.card:nth-of-type(3) {
+.card--home:nth-of-type(3) {
 	grid-area: card3;
 }
-.card:nth-of-type(4) {
+.card--home:nth-of-type(4) {
 	grid-area: card4;
 }
-
-.card:nth-of-type(5) {
+.card--home:nth-of-type(5) {
 	grid-area: card5;
 	display: none;
 }
@@ -55,6 +54,7 @@
 	padding-bottom: 1rem;
 	max-height: 20rem;
 	overflow: hidden;
+	background: var(--branco);
 }
 
 .card__img {

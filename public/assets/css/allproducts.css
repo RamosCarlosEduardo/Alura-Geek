@@ -1,0 +1,52 @@
+.ver-tudo {
+	padding: 3rem 1rem;
+	background: #F5F5F5;
+	display: grid;
+	grid-template-areas: 
+	"tittle tittle" 
+	"button button";
+	grid-template-columns: 1fr 1fr;
+	grid-gap: 10px;
+}
+
+.ver-tudo__title {
+	grid-area: tittle;
+	font-weight: 700;
+	font-size: 22px;
+	line-height: 26px;
+	color: var(--preto-100);
+}
+.button--addproduct {
+	grid-area: button;
+	max-width: 200px;
+}
+
+.paginate {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	width: 100%;
+	gap: 20px;
+	background: var(--preto-5);
+	padding-bottom: 3rem;
+}
+
+@media screen and (min-width: 768px) {
+	.ver-tudo {
+		grid-template-areas: 
+		"tittle tittle tittle button";
+		grid-template-columns: repeat(4, 1fr);
+	}
+	.button--addproduct {
+		justify-self: right;
+	}
+}
+
+@media screen and (min-width: 1024px) {
+	.ver-tudo {
+		grid-template-areas: 
+		"tittle tittle tittle tittle button";
+		grid-template-columns: repeat(5, 1fr);
+		padding-inline: 10vw;
+	}
+}
