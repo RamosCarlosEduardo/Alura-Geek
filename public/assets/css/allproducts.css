@@ -36,6 +36,8 @@
 	color: red;
 	font-size: 2rem;
 	font-weight: 700;
+	background: var(--preto-5);
+    padding: 2rem 0;
 }
 
 @media screen and (min-width: 768px) {

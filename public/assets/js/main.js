@@ -225,6 +225,8 @@ function createAllProductsGrid(productNotFound) {
 		newParagraph.classList.add("product-not-found")
 		newParagraph.innerText = "Produto não encontrado."
 		main.insertBefore(newParagraph, paginateDiv)
+
+		paginateDiv.style.display = 'none'
 	}
 }
 
