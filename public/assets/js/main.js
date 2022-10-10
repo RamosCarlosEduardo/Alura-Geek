@@ -181,22 +181,21 @@ function routeAllproducts () {
 	fetchProducts(currentUrl)
 }
 
-async function fetchProducts(currentUrl) {
+function fetchProducts(currentUrl) {
 	let productsHandler = document.getElementById('allproducts-handler')
 	
 	if (productsHandler) {productsHandler.remove()}
+	if (paramArray.q) {currentUrl = currentUrl + `&q=${paramArray.q}`}
 	
-	currentUrl = currentUrl + `&q=${paramArray.q}`	
-
-	await fetch(currentUrl)
+	fetch(currentUrl)
 			.then(response => response.json())
 			.then(data => {
 				if (data.length === 0){
 					productNotFound = true
 				} else {
 					dbPag = data
-					createAllProductsGrid()
 				}
+				createAllProductsGrid()
 	});
 }
 
