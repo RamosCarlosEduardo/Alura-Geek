@@ -1,4 +1,5 @@
 let dbEmbed = [];
+let productNotFound = false
 let dbPag = []
 let currentUrl = "https://loja-alura-geek.herokuapp.com/produtos?_page=1&_limit=10"
 let main = document.querySelector('main')
@@ -182,7 +183,7 @@ function routeAllproducts () {
 
 function fetchProducts(currentUrl) {
 	let productsHandler = document.getElementById('allproducts-handler')
-	let productNotFound = false
+	
 	if (productsHandler) {productsHandler.remove()}
 	
 	currentUrl = currentUrl + `&q=${paramArray.q}`	
@@ -190,18 +191,17 @@ function fetchProducts(currentUrl) {
 	fetch(currentUrl)
 		.then(response => response.json())
 		.then(data => {
-			// ###################### CRIAR FUNÇAO CASO NENHUM PRODUTO ENCONTRADO
 			dbPag = data
 			if (dbPag.length === 0){
 				productNotFound = true
 			}			
-			createAllProductsGrid(productNotFound)
+			createAllProductsGrid()
 			
 	});
 }
 
 
-function createAllProductsGrid(productNotFound) {
+function createAllProductsGrid() {
 	let paginateDiv = document.querySelector('.paginate')
 	
 	let newSection = document.createElement("section")
