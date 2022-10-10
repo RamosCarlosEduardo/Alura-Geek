@@ -1,6 +1,6 @@
 let dbEmbed = [];
 let dbPag = []
-let currentUrl = 'https://loja-alura-geek.herokuapp.com/produtos?_page=1&_limit=10'
+let currentUrl = "https://loja-alura-geek.herokuapp.com/produtos?_page=1&_limit=10"
 let main = document.querySelector('main')
 
 var params = window.location.search.substring(1).split('&');
@@ -184,6 +184,7 @@ function fetchProducts(currentUrl) {
 	let productsHandler = document.getElementById('allproducts-handler')
 	if (productsHandler) {productsHandler.remove()}
 	
+	currentUrl = currentUrl + `&q=${paramArray.q}`	
 
 	fetch(currentUrl)
 		.then(response => response.json())
@@ -311,7 +312,6 @@ function paginate( direction ) {
 let search = document.querySelector('[data-search-input]')
 search.addEventListener('keydown', (event) => {
 		if (event.key === 'Enter') {
-			currentUrl = `https://loja-alura-geek.herokuapp.com/produtos?_page=1&_limit=10&q=${search.value}`
 			window.location.href = `https://loja-alura-geek.herokuapp.com/?page=allproducts&q=${search.value}`
 		}
 })
