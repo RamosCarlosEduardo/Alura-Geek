@@ -35,8 +35,8 @@ async function defineRota (page) {
 		routeAllproducts();
 		break
 
-		case "newproduct":
-		console.log("adicionar produto")
+		case "addproduct":
+		routeAddProduct();
 		break
 
 		case "product":
@@ -182,6 +182,7 @@ function routeAllproducts () {
 
 function fetchProducts(currentUrl) {
 	let productsHandler = document.getElementById('allproducts-handler')
+	let productNotFound = false
 	if (productsHandler) {productsHandler.remove()}
 	
 	currentUrl = currentUrl + `&q=${paramArray.q}`	
@@ -189,11 +190,14 @@ function fetchProducts(currentUrl) {
 	fetch(currentUrl)
 		.then(response => response.json())
 		.then(data => {
+			// ###################### CRIAR FUNÇAO CASO NENHUM PRODUTO ENCONTRADO
+			if (dbPag.length === 0){productNotFound = true}
 			dbPag = data
-			createAllProductsGrid()
+			createAllProductsGrid(productNotFound)
 			
 	});
 }
+
 
 function createAllProductsGrid() {
 	let paginateDiv = document.querySelector('.paginate')
@@ -208,12 +212,20 @@ function createAllProductsGrid() {
 	sectionTitle.innerHTML = "Todos os produtos"
 	newSection.appendChild(sectionTitle)
 
-	let addProduct = document.createElement("button")
+	let addProduct = document.createElement("a")
 	addProduct.classList.add("button", "button--bg", "button--p", "button--addproduct")
 	addProduct.innerHTML = "Adicionar produto"
+	addProduct.href = "?page=addproduct"
 	newSection.appendChild(addProduct)
 
-	createAllProductsCards(newSection);
+	if (productNotFound === false) {
+		createAllProductsCards(newSection);
+	} else {
+		let newParagraph = document.createElement("p")
+		newParagraph.classList.add("product-not-found")
+		newParagraph.innerText = "Produto não encontrado."
+		main.insertBefore(newParagraph, paginateDiv)
+	}
 }
 
 function createAllProductsCards(section) {
@@ -307,11 +319,16 @@ function paginate( direction ) {
 	} );
 }
 
-
 // #### SEARCH
 let search = document.querySelector('[data-search-input]')
 search.addEventListener('keydown', (event) => {
-		if (event.key === 'Enter') {
-			window.location.href = `https://loja-alura-geek.herokuapp.com/?page=allproducts&q=${search.value}`
-		}
+	if (event.key === 'Enter') {
+		window.location.href = `https://loja-alura-geek.herokuapp.com/?page=allproducts&q=${search.value}`
+	}
 })
+
+// ######### ADD PRODUCT
+
+function routeAddProduct () {
+	console.log('adicionar produto')
+}

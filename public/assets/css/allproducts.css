@@ -31,6 +31,13 @@
 	padding-bottom: 3rem;
 }
 
+.product-not-found {
+	text-align: center;
+	color: red;
+	font-size: 2rem;
+	font-weight: 700;
+}
+
 @media screen and (min-width: 768px) {
 	.ver-tudo {
 		grid-template-areas: 
