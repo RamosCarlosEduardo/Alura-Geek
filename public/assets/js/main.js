@@ -178,10 +178,10 @@ function createLoginForm() {
 
 function routeAllproducts () {
 	createPaginationButtons()
-	fetchProducts(currentUrl)
+	fetchProducts()
 }
 
-function fetchProducts(currentUrl) {
+function fetchProducts() {
 	let productsHandler = document.getElementById('allproducts-handler')
 	
 	if (productsHandler) {productsHandler.remove()}
@@ -267,7 +267,6 @@ function createPaginationButtons() {
 	let main = document.querySelector('main')
 	let newDiv = document.createElement('div')
 	newDiv.classList.add("paginate")
-	// newDiv.setAttribute('', '')
 	main.appendChild(newDiv)
 
 	let buttonFirst = document.createElement('button')
@@ -314,7 +313,6 @@ function paginate( direction ) {
 	fetch(currentUrl).then( response => {
 		let linkHeaders = parseLinkHeader( response.headers.get("Link") );
 		
-		prateste = linkHeaders
 		if ( !!linkHeaders[direction] ) {
 			currentUrl = linkHeaders[direction];
 			fetchProducts( linkHeaders[direction] );
