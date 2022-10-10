@@ -89,7 +89,6 @@ function createHomeBanner () {
 
 function createHomeGrid () {
 	dbEmbed.forEach((el) => {
-		console.log(el)
 		let newSection = document.createElement("section")
 		newSection.classList.add("grid-cards")
 		main.appendChild(newSection)
@@ -185,6 +184,7 @@ function fetchProducts(currentUrl) {
 	let productsHandler = document.getElementById('allproducts-handler')
 	if (productsHandler) {productsHandler.remove()}
 	
+
 	fetch(currentUrl)
 		.then(response => response.json())
 		.then(data => {
@@ -288,11 +288,11 @@ function parseLinkHeader( linkHeader ) {
 		return [ thisHeaderRel, thisHeaderUrl ]
 
 	} );
-	console.log(linkHeadersMap)
+	
 	return Object.fromEntries( linkHeadersMap );
 }
 
-var prateste;
+
 function paginate( direction ) {
 
 	fetch(currentUrl).then( response => {
@@ -305,3 +305,13 @@ function paginate( direction ) {
 		}
 	} );
 }
+
+
+// #### SEARCH
+let search = document.querySelector('[data-search-input]')
+search.addEventListener('keydown', (event) => {
+		if (event.key === 'Enter') {
+			currentUrl = `https://loja-alura-geek.herokuapp.com/produtos?_page=1&_limit=10&q=${search.value}`
+			window.location.href = `https://loja-alura-geek.herokuapp.com/?page=allproducts&q=${search.value}`
+		}
+})
