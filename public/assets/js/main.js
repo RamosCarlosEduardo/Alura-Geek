@@ -191,8 +191,10 @@ function fetchProducts(currentUrl) {
 		.then(response => response.json())
 		.then(data => {
 			// ###################### CRIAR FUNÇAO CASO NENHUM PRODUTO ENCONTRADO
-			if (dbPag.length === 0){productNotFound = true}
 			dbPag = data
+			if (dbPag.length === 0){
+				productNotFound = true
+			}			
 			createAllProductsGrid(productNotFound)
 			
 	});
