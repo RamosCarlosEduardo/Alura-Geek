@@ -1,0 +1,81 @@
+/* ########## FORMS #######*/
+.form__fieldset {
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	gap: 16px;
+	margin: 8px 0;
+}
+
+.form__legend{
+	font-weight: 700;
+	font-size: 16px;
+	line-height: 19px;
+	color: var(--preto-100);
+}
+.form__caixa {
+	position: relative;
+	width: 100%;
+	height: 56px;
+	border-radius: 4px;
+}
+
+.form__lbl {
+	position: absolute;
+	font-weight: 400;
+	font-size: 12px;
+	line-height: 16px;
+	color: var(--preto-50);
+	left: 12px;
+	top: 8px;
+}
+
+.form__text {
+	padding: 12px;
+}
+
+.form__input {
+	font-weight: 400;
+	font-size: 16px;
+	width: 100%;
+	height: 100%;
+	padding: 0 12px;
+	padding-top: 16px;
+	border-bottom: solid 1px var(--azul-20);
+	border-right: solid 1px var(--azul-20);
+	border-radius: 4px;	
+	color: var(--preto-100);
+}
+
+
+/* ########## LOGIN #######*/
+.login__container, .login__form {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.login__container {
+	padding: 5rem 1rem;
+	background: #F5F5F5;
+}
+
+.login__form {
+	max-width: 450px;
+	gap: 16px;
+	background: transparent;
+}
+
+.login__mail::placeholder,
+.login__pass::placeholder {
+	color: var(--preto-30);
+}
+
+
+@media screen and (min-width: 768px) {
+	.form__text {
+		height: 82px;
+	}
+}

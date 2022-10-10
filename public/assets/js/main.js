@@ -156,17 +156,39 @@ function createLoginForm() {
 	form.classList.add("login__form")
 	section.appendChild(form)
 
+	let mailDivFormCx = document.createElement("div")
+	mailDivFormCx.classList.add("form__caixa")
+	form.appendChild(mailDivFormCx)
+
 	let inputMail = document.createElement("input")
-	inputMail.classList.add("login__mail")
+	inputMail.classList.add("login__mail", "form__input")
 	inputMail.setAttribute("type", "text")
-	inputMail.setAttribute("placeholder", "Escreva seu e-mail")
-	form.appendChild(inputMail)
+	inputMail.setAttribute("id", "form__login-mail")
+	// inputMail.setAttribute("placeholder", "Escreva seu e-mail")
+	mailDivFormCx.appendChild(inputMail)
+
+	let lblMail = document.createElement("label")
+	lblMail.setAttribute("for", "form__login-mail")
+	lblMail.classList.add("form__lbl")
+	lblMail.innerText = "Escreva seu e-mail"
+	mailDivFormCx.appendChild(lblMail)
+
+	let passDivFormCx = document.createElement("div")
+	passDivFormCx.classList.add("form__caixa")
+	form.appendChild(passDivFormCx)
 
 	let inputPass = document.createElement("input")
-	inputPass.classList.add("login__mail")
+	inputPass.classList.add("login__mail", "form__input")
 	inputPass.setAttribute("type", "password")
-	inputPass.setAttribute("placeholder", "Escreva sua senha")
-	form.appendChild(inputPass)
+	inputMail.setAttribute("id", "form__login-pass")
+	// inputPass.setAttribute("placeholder", "Escreva sua senha")
+	passDivFormCx.appendChild(inputPass)
+
+	let lblPass = document.createElement("label")
+	lblPass.setAttribute("for", "form__login-mail")
+	lblPass.classList.add("form__lbl")
+	lblPass.innerText = "Escreva sua senha"
+	passDivFormCx.appendChild(lblPass)
 
 	let button = document.createElement("a")
 	button.classList.add("button", "button--p", "button--bg", "login__submit")
