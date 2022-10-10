@@ -199,7 +199,7 @@ function fetchProducts(currentUrl) {
 }
 
 
-function createAllProductsGrid() {
+function createAllProductsGrid(productNotFound) {
 	let paginateDiv = document.querySelector('.paginate')
 	
 	let newSection = document.createElement("section")
