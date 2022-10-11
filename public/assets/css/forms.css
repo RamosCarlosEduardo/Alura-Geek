@@ -49,7 +49,7 @@
 
 
 /* ########## LOGIN #######*/
-.login__container, .login__form {
+.form__section-container, .form {
 	width: 100%;
 	display: flex;
 	flex-direction: column;
@@ -57,12 +57,12 @@
 	justify-content: center;
 }
 
-.login__container {
+.form__section-container {
 	padding: 5rem 1rem;
 	background: #F5F5F5;
 }
 
-.login__form {
+.form {
 	max-width: 450px;
 	gap: 16px;
 	background: transparent;

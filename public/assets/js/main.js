@@ -149,11 +149,11 @@ function routeLogin () {
 
 function createLoginForm() {
 	let section = document.createElement("section")
-	section.classList.add("login__container")
+	section.classList.add("form__section-container")
 	main.appendChild(section)
 
 	let form = document.createElement("form")
-	form.classList.add("login__form")
+	form.classList.add("form")
 	section.appendChild(form)
 
 	let mailDivFormCx = document.createElement("div")
@@ -353,5 +353,100 @@ search.addEventListener('keydown', (event) => {
 // ######### ADD PRODUCT
 
 function routeAddProduct () {
+	createAddProductForm()
 	console.log('adicionar produto')
+}
+
+function createAddProductForm () {
+	let section = document.createElement("section")
+	section.classList.add("form__section-container")
+	main.appendChild(section)
+
+	let form = document.createElement("form")
+	form.classList.add("form")
+	section.appendChild(form)
+
+	let urlImgDivFormCx = document.createElement("div")
+	urlImgDivFormCx.classList.add("form__caixa")
+	form.appendChild(urlImgDivFormCx)
+
+	let inputUrlImg = document.createElement("input")
+	inputUrlImg.classList.add("form__input")
+	inputUrlImg.setAttribute("type", "text")
+	inputUrlImg.setAttribute("id", "form__add__url-img")
+	urlImgDivFormCx.appendChild(inputUrlImg)
+
+	let lblUrlImg = document.createElement("label")
+	lblUrlImg.setAttribute("for", "form__url-img")
+	lblUrlImg.classList.add("form__lbl")
+	lblUrlImg.innerText = "URL da imagem"
+	urlImgDivFormCx.appendChild(lblUrlImg)
+
+	let categoriasDivFormCx = document.createElement("div")
+	categoriasDivFormCx.classList.add("form__caixa")
+	form.appendChild(categoriasDivFormCx)
+
+	let categoriasInput = document.createElement("input")
+	categoriasInput.classList.add("form__input")
+	categoriasInput.setAttribute("type", "text")
+	categoriasInput.setAttribute("id", "form__add__categoria")
+	categoriasDivFormCx.appendChild(categoriasInput)
+
+	let categoriasLbl = document.createElement("label")
+	categoriasLbl.setAttribute("for", "form__add__categoria")
+	categoriasLbl.classList.add("form__lbl")
+	categoriasLbl.innerText = "Categoria"
+	categoriasDivFormCx.appendChild(categoriasLbl)
+
+	let nomeDivFormCx = document.createElement("div")
+	nomeDivFormCx.classList.add("form__caixa")
+	form.appendChild(nomeDivFormCx)
+
+	let nomeInput = document.createElement("input")
+	nomeInput.classList.add("form__input")
+	nomeInput.setAttribute("type", "text")
+	nomeInput.setAttribute("id", "form__add__nome")
+	nomeDivFormCx.appendChild(nomeInput)
+
+	let nomeLbl = document.createElement("label")
+	nomeLbl.setAttribute("for", "form__add__nome")
+	nomeLbl.classList.add("form__lbl")
+	nomeLbl.innerText = "Nome do produto"
+	nomeDivFormCx.appendChild(nomeLbl)
+
+	let precoDivFormCx = document.createElement("div")
+	precoDivFormCx.classList.add("form__caixa")
+	form.appendChild(precoDivFormCx)
+
+	let precoInput = document.createElement("input")
+	precoInput.classList.add("form__input")
+	precoInput.setAttribute("type", "text")
+	precoInput.setAttribute("onkeydown", "return event.keyCode !== 69")
+	precoInput.setAttribute("id", "form__add__preco")
+	precoDivFormCx.appendChild(precoInput)
+	precoInput.addEventListener("focusout", (event) => {
+		let numDesformatado = precoInput.value
+		if (numDesformatado) {
+			let numFormatado = parseFloat(numDesformatado).toLocaleString('pt-BR', { style: 'currency', currency: 'brl' })
+			return precoInput.value = numFormatado
+		}	
+	})
+	precoInput.addEventListener("focusin", (event) => {
+		let numFormatado = precoInput.value
+		if (numFormatado) {
+			let numDesformatado = numFormatado.replace("R$", "").trim().replaceAll(".","").replace(",", ".")
+			return precoInput.value = numDesformatado
+		}
+	})
+
+	let precoLbl = document.createElement("label")
+	precoLbl.setAttribute("for", "form__add__preco")
+	precoLbl.classList.add("form__lbl")
+	precoLbl.innerText = "Preço do produto"
+	precoDivFormCx.appendChild(precoLbl)
+
+	let button = document.createElement("a")
+	button.classList.add("button", "button--p", "button--bg", "form__add__submit")
+	button.innerHTML = "Enviar"
+	form.appendChild(button)
 }
