@@ -6,6 +6,7 @@
 @import url('footer.css');
 @import url('forms.css');
 @import url('allproducts.css');
+@import url('product-page.css');
 
 :root {
 	--branco: #FFF;

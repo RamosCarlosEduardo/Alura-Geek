@@ -9,6 +9,13 @@
 	/*50vw:  metade da tela, 8px metade do gap pra cada lado, 16px padding*/
 	grid-template-columns: repeat(2, calc(50vw - 8px - 16px));
 }
+
+.grid-cards--similares {
+	grid-template-areas:
+        "titulo titulo"
+        "card1 card2"
+        "card3 card4";
+}
 .grid-cards__ver-tudo {
 	justify-self: flex-end;
 }
