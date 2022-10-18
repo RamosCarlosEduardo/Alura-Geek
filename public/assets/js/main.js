@@ -636,7 +636,7 @@ async function createProductInfos (productId) {
 
 function fetchSimilares() {
 	
-	fetch(`http://loja-alura-geek.herokuapp.com/categorias/${currentCategoria}/produtos?id_ne=${paramArray.id}`)
+	fetch(`https://loja-alura-geek.herokuapp.com/categorias/${currentCategoria}/produtos?id_ne=${paramArray.id}`)
 		.then(response => response.json())
 		.then(data => {
 			dbSimilares = data
