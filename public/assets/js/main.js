@@ -2,129 +2,49 @@ export let dbEmbed = [];
 export const mainElement = document.querySelector('main')
 export const urlBase = 'https://loja-alura-geek.herokuapp.com/'
 let dbPag = [];
-let dbSimilares = [];
 let productNotFound = false
 export let currentUrl = `${urlBase}produtos?_page=1&_limit=10`
-let currentCategoria = undefined
-
 
 import {paramArray} from './modules/getParams.js';
 import {checkAuthentication} from './modules/authentication.js'
 import {routeHome, createHomeBanner, createHomeGrid, createHomeCards} from './modules/home.js'
 import './modules/search.js'
 import {getDb} from './modules/fetch.js'
+import {routeLogin, createLoginForm} from './modules/login.js'
+import {routProduct, createProductInfos, fetchSimilares, createSimilaresGrid, createSimilaresCards} from './modules/product.js'
+import {routeAddProduct, createAddProductForm, desformataCurrency, adicionarProduto, adicionarCategoria} from './modules/addProduct.js'
 
 const defineRota = async (page) => {
 	const auth = checkAuthentication()
 	switch (page) {
 		case "login":
-			routeLogin();
-			break;
+		routeLogin();
+		break;
 
 		case "allproducts":	
-			routeAllproducts(auth);
-			break
+		routeAllproducts(auth);
+		break
 
 		case "addproduct":
-			if (auth){
-				routeAddProduct();		
-			} else {
-				alert('Apenas usuários logados podem acessar essa página')
-				window.location.href = `${urlBase}?page=login`
-			}
-			break
+		if (auth){
+			routeAddProduct();		
+		} else {
+			alert('Apenas usuários logados podem acessar essa página')
+			window.location.href = `${urlBase}?page=login`
+		}
+		break
 
 		case "product":
-			routProduct();
-			break
+		routProduct();
+		break
 
 		default: 
-			dbEmbed = await getDb(`${urlBase}categorias?_embed=produtos`);
-			routeHome();
+		dbEmbed = await getDb(`${urlBase}categorias?_embed=produtos`);
+		routeHome();
 	}
 }
 
-document.addEventListener("DOMContentLoaded", defineRota(paramArray.page));
-
-// baixa o banco de dados de produtos
-async function fetchDbEmbed () {
-	await fetch(`${urlBase}categorias?_embed=produtos`)
-	.then(response => response.json())
-	.then(data => {
-		dbEmbed = data
-	});
-}
-// #--------------------------------#
-
-
-// ############### Login ###############
-function routeLogin () {
-	createLoginForm();
-}
-
-function createLoginForm() {
-	let section = document.createElement("section")
-	section.classList.add("form__section-container")
-	mainElement.appendChild(section)
-
-	let form = document.createElement("form")
-	form.classList.add("form")
-	section.appendChild(form)
-
-	let mailDivFormCx = document.createElement("div")
-	mailDivFormCx.classList.add("form__caixa")
-	form.appendChild(mailDivFormCx)
-
-	let inputMail = document.createElement("input")
-	inputMail.classList.add("login__mail", "form__input")
-	inputMail.setAttribute("type", "text")
-	inputMail.setAttribute("id", "form__login-mail")
-	mailDivFormCx.appendChild(inputMail)
-
-	let lblMail = document.createElement("label")
-	lblMail.setAttribute("for", "form__login-mail")
-	lblMail.classList.add("form__lbl")
-	lblMail.innerText = "Escreva seu e-mail"
-	mailDivFormCx.appendChild(lblMail)
-
-	let passDivFormCx = document.createElement("div")
-	passDivFormCx.classList.add("form__caixa")
-	form.appendChild(passDivFormCx)
-
-	let inputPass = document.createElement("input")
-	inputPass.classList.add("login__pass", "form__input")
-	inputPass.setAttribute("type", "password")
-	inputPass.setAttribute("id", "form__login-pass")
-	passDivFormCx.appendChild(inputPass)
-
-	let lblPass = document.createElement("label")
-	lblPass.setAttribute("for", "form__login-pass")
-	lblPass.classList.add("form__lbl")
-	lblPass.innerText = "Escreva sua senha"
-	passDivFormCx.appendChild(lblPass)
-
-	let button = document.createElement("a")
-	button.classList.add("button", "button--p", "button--bg", "login__submit")
-	button.innerHTML = "Entrar"
-	form.appendChild(button)
-
-	const loginButton = document.querySelector('.login__submit')
-	loginButton.addEventListener('click', (event) => {
-		const inputMail = document.getElementById('form__login-mail')
-		const inputPass = document.getElementById('form__login-pass')
-
-		if (inputMail.value === 'teste@teste.com' && inputPass.value === '123456'){
-			sessionStorage.setItem('auth', true);
-			window.location.href = 'http://loja-alura-geek.herokuapp.com/'
-		} else {
-			sessionStorage.setItem('auth', false);
-			alert('Dados inválidos, tente novamente.')
-		}
-	})
-	
-}
-
-
+document.addEventListener("DOMContentLoaded", () => defineRota(paramArray.page));
 
 // ############### All products ###############
 
@@ -133,24 +53,17 @@ function routeAllproducts(auth) {
 	fetchProducts(auth)
 }
 
-function fetchProducts(auth) {
+async function fetchProducts(auth) {
 	let productsHandler = document.getElementById('allproducts-handler')
 	
 	if (productsHandler) {productsHandler.remove()}
-	
-	if (paramArray.q) {currentUrl = currentUrl + `&q=${paramArray.q}`}
 
-	fetch(currentUrl)
-		.then(response => response.json())
-		.then(data => {
-			if (data.length === 0){
-				productNotFound = true
-			} else {
-				dbPag = data
-			}
-			createAllProductsGrid(auth)
-		});
-}
+		if (paramArray.q) {currentUrl = currentUrl + `&q=${paramArray.q}`}
+
+			dbPag = await getDb(currentUrl)
+
+		createAllProductsGrid(auth)
+	}
 
 
 	function createAllProductsGrid(auth) {
@@ -264,8 +177,7 @@ function fetchProducts(auth) {
 	}
 
 
-	function paginate( direction ) {
-
+	const paginate = ( direction ) => {
 		fetch(currentUrl).then( response => {
 			let linkHeaders = parseLinkHeader( response.headers.get("Link") );
 
@@ -276,340 +188,3 @@ function fetchProducts(auth) {
 		} );
 	}
 
-// ######### ADD PRODUCT
-
-function routeAddProduct () {
-	createAddProductForm()
-	console.log('adicionar produto')
-}
-
-async function createAddProductForm () {
-	// SECTION
-	let section = document.createElement("section")
-	section.classList.add("form__section-container")
-	mainElement.appendChild(section)
-
-	let form = document.createElement("form")
-	form.classList.add("form")
-	section.appendChild(form)
-
-	// INPUT NAME
-	let nomeDivFormCx = document.createElement("div")
-	nomeDivFormCx.classList.add("form__caixa")
-	form.appendChild(nomeDivFormCx)
-
-	let nomeInput = document.createElement("input")
-	nomeInput.classList.add("form__input")
-	nomeInput.setAttribute("type", "text")
-	nomeInput.setAttribute("id", "form__add__nome")
-	nomeDivFormCx.appendChild(nomeInput)
-
-	let nomeLbl = document.createElement("label")
-	nomeLbl.setAttribute("for", "form__add__nome")
-	nomeLbl.classList.add("form__lbl")
-	nomeLbl.innerText = "Nome do produto"
-	nomeDivFormCx.appendChild(nomeLbl)
-
-	// INPUT URL IMG
-	let urlImgDivFormCx = document.createElement("div")
-	urlImgDivFormCx.classList.add("form__caixa")
-	form.appendChild(urlImgDivFormCx)
-
-	let inputUrlImg = document.createElement("input")
-	inputUrlImg.classList.add("form__input")
-	inputUrlImg.setAttribute("type", "text")
-	inputUrlImg.setAttribute("id", "form__add__url-img")
-	urlImgDivFormCx.appendChild(inputUrlImg)
-
-	let lblUrlImg = document.createElement("label")
-	lblUrlImg.setAttribute("for", "form__url-img")
-	lblUrlImg.classList.add("form__lbl")
-	lblUrlImg.innerText = "URL da imagem"
-	urlImgDivFormCx.appendChild(lblUrlImg)
-
-	// INPUT PREÇO
-	let precoDivFormCx = document.createElement("div")
-	precoDivFormCx.classList.add("form__caixa")
-	form.appendChild(precoDivFormCx)
-
-	let precoInput = document.createElement("input")
-	precoInput.classList.add("form__input")
-	precoInput.setAttribute("type", "text")
-	precoInput.setAttribute("onkeydown", "return event.keyCode !== 69")
-	precoInput.setAttribute("id", "form__add__preco")
-	precoDivFormCx.appendChild(precoInput)
-	precoInput.addEventListener("focusout", (event) => {
-		let numDesformatado = precoInput.value
-		if (numDesformatado) {
-			let numFormatado = parseFloat(numDesformatado).toLocaleString('pt-BR', { style: 'currency', currency: 'brl' })
-			return precoInput.value = numFormatado
-		}	
-	})
-	precoInput.addEventListener("focusin", (event) => {
-		let numFormatado = precoInput.value
-		precoInput.value = desformataCurrency(numFormatado)
-
-	})
-
-	let precoLbl = document.createElement("label")
-	precoLbl.setAttribute("for", "form__add__preco")
-	precoLbl.classList.add("form__lbl")
-	precoLbl.innerText = "Preço do produto"
-	precoDivFormCx.appendChild(precoLbl)
-
-	// INPUT DESCRIÇAO
-	let descricaoDivFormCx = document.createElement("div")
-	descricaoDivFormCx.classList.add("form__caixa")
-	form.appendChild(descricaoDivFormCx)
-
-	let descricaoInput = document.createElement("input")
-	descricaoInput.classList.add("form__input")
-	descricaoInput.setAttribute("type", "text")
-	descricaoInput.setAttribute("id", "form__add__descricao")
-	descricaoDivFormCx.appendChild(descricaoInput)
-
-	let descricaoLbl = document.createElement("label")
-	descricaoLbl.setAttribute("for", "form__add__descricao")
-	descricaoLbl.classList.add("form__lbl")
-	descricaoLbl.innerText = "Descricao do produto"
-	descricaoDivFormCx.appendChild(descricaoLbl)
-
-	// INPUT ALT
-	let altImgDivFormCx = document.createElement("div")
-	altImgDivFormCx.classList.add("form__caixa")
-	form.appendChild(altImgDivFormCx)
-
-	let altImgInput = document.createElement("input")
-	altImgInput.classList.add("form__input")
-	altImgInput.setAttribute("type", "text")
-	altImgInput.setAttribute("id", "form__add__altImg")
-	altImgDivFormCx.appendChild(altImgInput)
-
-	let altImgLbl = document.createElement("label")
-	altImgLbl.setAttribute("for", "form__add__altImg")
-	altImgLbl.classList.add("form__lbl")
-	altImgLbl.innerText = "Texto alternativo do produto"
-	altImgDivFormCx.appendChild(altImgLbl)
-
-	// INPUT CATEGORIAS
-	let categoriasDivFormCx = document.createElement("div")
-	categoriasDivFormCx.classList.add("form__caixa")
-	form.appendChild(categoriasDivFormCx)
-
-	let categoriasInput = document.createElement("input")
-	categoriasInput.classList.add("form__input")
-	categoriasInput.setAttribute("type", "text")
-	categoriasInput.setAttribute("list", "categorias-list")
-	categoriasInput.setAttribute("id", "form__add__categoria")
-	categoriasDivFormCx.appendChild(categoriasInput)
-
-	let categoriasList = document.createElement("datalist")
-	categoriasList.setAttribute("id", "categorias-list")
-	form.appendChild(categoriasList)
-
-	// incluindo options de categorias
-	await fetch(`${urlBase}categorias`)
-	.then(r => r.json())
-	.then(data => {
-		data.forEach( element => {
-			let categoriasOption = document.createElement("option")
-			categoriasOption.innerHTML = element.nome
-			categoriasList.appendChild(categoriasOption)
-
-		})
-	})
-
-	let categoriasLbl = document.createElement("label")
-	categoriasLbl.setAttribute("for", "form__add__categoria")
-	categoriasLbl.classList.add("form__lbl")
-	categoriasLbl.innerText = "Categoria"
-	categoriasDivFormCx.appendChild(categoriasLbl)
-
-	// BUTTON ENVIAR
-	let button = document.createElement("a")
-	button.classList.add("button", "button--p", "button--bg", "form__add__submit")
-	button.innerHTML = "Enviar"
-	form.appendChild(button)
-	button.addEventListener('click', adicionarProduto)
-}
-
-function desformataCurrency(numFormatado) {
-	if (numFormatado) {
-		let numDesformatado = numFormatado.replace("R$", "").trim().replaceAll(".","").replace(",", ".")
-		return parseFloat(numDesformatado)
-	}
-	return ""
-}
-
-async function adicionarProduto (){
-	let urlImg = document.getElementById('form__add__url-img')
-	let categoriaInput = document.getElementById('form__add__categoria')
-	let nome = document.getElementById('form__add__nome')
-	let preco = document.getElementById('form__add__preco')
-	let categoriasId
-
-	// arrumar a busca pelo id, nao ta funcionando ai embaixo. retornando 4
-	// provavelmente pq o looping continua, e o ultimo a ser verificado é o ultimo item
-	// nesse caso o forEach nao vai servir, pq nao existe break. pensar em outra solução
-	await fetch(`${urlBase}categorias`)
-	.then(r => r.json())
-	.then(data => {
-		for (i in data) {
-			if ( Object.values(data[i]).includes(categoriaInput.value) ) {
-				categoriasId = data[i].id
-			}
-		}
-		if (!categoriasId) {
-			categoriasId = data.length + 1
-			adicionarCategoria();
-			console.log("precisa de um put categoria")
-		}
-	})
-	
-	const newProduct = {
-		nome: nome.value,
-		img: urlImg.value,
-		preco: desformataCurrency(preco.value),
-		descricao: 'pegar do form depois de criar o elemento',
-		alt: 'pegar do form depois de criar o elemento',
-		categoriaId: categoriasId
-	}
-
-	const init = {
-		method: 'POST',
-		headers: {
-			"Content-type": 'application/json'
-		},
-		body: JSON.stringify(newProduct)
-
-	}
-	fetch(`${urlBase}produtos`, init)
-	.then(
-		// incluir msg de cadastrado com sucesso e limpar o form
-		alert('Produto cadastrado com sucesso!')
-		)
-}
-
-function adicionarCategoria () {
-	let categoriaNome = document.getElementById('form__add__categoria')
-	
-	const newCategoria = {
-		nome: categoriaNome.value,
-	}
-
-	const init = {
-		method: 'POST',
-		headers: {
-			"Content-type": 'application/json'
-		},
-		body: JSON.stringify(newCategoria)
-	}
-
-	fetch(`${urlBase}categorias`, init)
-	.then(
-		// incluir msg de cadastrado com sucesso e limpar o form
-		console.log('categoria cadastrada com sucesso')
-		)
-}
-
-// ########## ROUTE PRODUCT ##########
-async function routProduct () {
-	await createProductInfos(paramArray['id'])
-	await fetchSimilares()
-	
-}
-
-async function createProductInfos (productId) {
-	let produto = []
-
-	await fetch(`${urlBase}produtos/${productId}`)
-	.then(response => response.json())
-	.then(data => produto = data)
-
-	currentCategoria = produto.categoriaId
-
-	let divCard = document.createElement("div")
-	divCard.classList.add("product__card")
-
-	let cardImg = document.createElement("img")
-	cardImg.classList.add("product__img")
-	cardImg.setAttribute("alt", `${produto.alt}`)
-	cardImg.setAttribute("src", `${produto.img}`)
-	divCard.appendChild(cardImg)
-
-	let divTextContainer = document.createElement("div")
-	divTextContainer.classList.add("product__card", "product__card__text")
-	divCard.appendChild(divTextContainer)
-
-	let cardTitle = document.createElement("h3")
-	cardTitle.classList.add("product__card__title")
-	cardTitle.innerHTML = `${produto.nome}`
-	divTextContainer.appendChild(cardTitle)
-
-	let cardPreco = document.createElement("p")
-	cardPreco.classList.add("product__card__preco")
-	cardPreco.innerHTML = `${produto.preco.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}`
-	divTextContainer.appendChild(cardPreco)
-
-	let descricao = document.createElement("p")
-	descricao.classList.add("product__card__descricao")
-	descricao.innerHTML = produto.descricao
-	divTextContainer.appendChild(descricao)
-
-	mainElement.appendChild(divCard)
-}
-
-async function fetchSimilares() {
-	dbSimilares = await getDb(`${urlBase}categorias/${currentCategoria}/produtos?id_ne=${paramArray.id}`)
-	createSimilaresGrid()
-}
-
-
-function createSimilaresGrid() {
-
-	let newSection = document.createElement("section")
-	newSection.classList.add("grid-cards", "grid-cards--similares")
-	mainElement.appendChild(newSection)
-
-	let sectionTitle = document.createElement("h2")
-	sectionTitle.classList.add("grid-cards__title")
-	sectionTitle.innerHTML = "Produtos similares"
-	newSection.appendChild(sectionTitle)
-
-	createSimilaresCards(newSection);
-}
-
-function createSimilaresCards(section) {
-
-	for (let i = 0; i<5;i++){
-
-		let divCard = document.createElement("div")
-		divCard.classList.add("card", "card--home")
-
-		let cardImg = document.createElement("img")
-		cardImg.classList.add("card__img")
-		cardImg.setAttribute("alt", `${dbSimilares[i].alt}`)
-		cardImg.setAttribute("src", `${dbSimilares[i].img}`)
-		divCard.appendChild(cardImg)
-
-
-		let cardTitle = document.createElement("h3")
-		cardTitle.classList.add("card__titulo")
-		cardTitle.innerHTML = `${dbSimilares[i].nome}`
-		divCard.appendChild(cardTitle)
-
-		let cardPreco = document.createElement("p")
-		cardPreco.classList.add("card__preco")
-		cardPreco.innerHTML = `${dbSimilares[i].preco.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}`
-		divCard.appendChild(cardPreco)
-
-		let verProduto = document.createElement("a")
-		verProduto.classList.add("produtos__link")
-		verProduto.innerHTML = "Ver produto"
-		verProduto.setAttribute("href", `?page=product&id=${dbSimilares[i].id}`)
-		divCard.appendChild(verProduto)
-
-		section.appendChild(divCard)
-
-	}
-}
