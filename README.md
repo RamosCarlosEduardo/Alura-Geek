@@ -1,6 +1,4 @@
-link to online json-server
-https://my-json-server.typicode.com/<your-username>/<your-repo>
+# DEVELOPING . . .
 
-documentation
-https://www.npmjs.com/package/json-server
+Documentation JSON SERVER: https://www.npmjs.com/package/json-server
 https://my-json-server.typicode.com/
