@@ -6,6 +6,8 @@ let currentUrl = "https://loja-alura-geek.herokuapp.com/produtos?_page=1&_limit=
 let main = document.querySelector('main')
 let currentCategoria = undefined
 
+
+
 var params = window.location.search.substring(1).split('&');
 //Criar objeto que vai conter os parametros
 var paramArray = {};
@@ -26,25 +28,34 @@ async function defineRota (page) {
 		case undefined:
 		case "":
 		case "home":
-		await fetchDbEmbed();
-		routeHome();
-		break;
+			verificaAuth()
+			await fetchDbEmbed();
+			routeHome();
+			break;
 
 		case "login":
-		routeLogin();
-		break;
+			verificaAuth()
+			routeLogin();
+			break;
 
 		case "allproducts":
-		routeAllproducts();
-		break
+			
+			routeAllproducts(verificaAuth());
+			break
 
 		case "addproduct":
-		routeAddProduct();
-		break
+			if (verificaAuth()){
+				routeAddProduct();		
+			} else {
+				alert('Apenas usuários logados podem acessar essa página')
+				window.location.href = 'https://loja-alura-geek.herokuapp.com/?page=login'			
+			}
+			break
 
 		case "product":
-		routProduct();
-		break
+			verificaAuth()
+			routProduct();
+			break
 	}
 	
 }
@@ -60,6 +71,22 @@ async function fetchDbEmbed () {
 	});
 }
 // #--------------------------------#
+
+
+function verificaAuth () {
+	const auth = localStorage.getItem('auth');
+	const loginButtonHeader = document.querySelector('[data-login]')
+	if (auth) {
+		
+		loginButtonHeader.style.display = 'none'
+		return true
+	} else {
+		loginButtonHeader.style.display = 'initial'
+		return false
+	}	
+}
+
+
 
 
 // ############### Home #################
@@ -167,7 +194,6 @@ function createLoginForm() {
 	inputMail.classList.add("login__mail", "form__input")
 	inputMail.setAttribute("type", "text")
 	inputMail.setAttribute("id", "form__login-mail")
-	// inputMail.setAttribute("placeholder", "Escreva seu e-mail")
 	mailDivFormCx.appendChild(inputMail)
 
 	let lblMail = document.createElement("label")
@@ -181,14 +207,13 @@ function createLoginForm() {
 	form.appendChild(passDivFormCx)
 
 	let inputPass = document.createElement("input")
-	inputPass.classList.add("login__mail", "form__input")
+	inputPass.classList.add("login__pass", "form__input")
 	inputPass.setAttribute("type", "password")
-	inputMail.setAttribute("id", "form__login-pass")
-	// inputPass.setAttribute("placeholder", "Escreva sua senha")
+	inputPass.setAttribute("id", "form__login-pass")
 	passDivFormCx.appendChild(inputPass)
 
 	let lblPass = document.createElement("label")
-	lblPass.setAttribute("for", "form__login-mail")
+	lblPass.setAttribute("for", "form__login-pass")
 	lblPass.classList.add("form__lbl")
 	lblPass.innerText = "Escreva sua senha"
 	passDivFormCx.appendChild(lblPass)
@@ -197,16 +222,33 @@ function createLoginForm() {
 	button.classList.add("button", "button--p", "button--bg", "login__submit")
 	button.innerHTML = "Entrar"
 	form.appendChild(button)
+
+	const loginButton = document.querySelector('.login__submit')
+	loginButton.addEventListener('click', (event) => {
+		const inputMail = document.getElementById('form__login-mail')
+		const inputPass = document.getElementById('form__login-pass')
+
+		if (inputMail.value === 'teste@teste.com' && inputPass.value === '123456'){
+			localStorage.setItem('auth', true);
+			window.location.href = 'http://loja-alura-geek.herokuapp.com/'
+		} else {
+			localStorage.setItem('auth', false);
+			alert('Dados inválidos, tente novamente.')
+		}
+	})
+	
 }
+
+
 
 // ############### All products ###############
 
-function routeAllproducts () {
+function routeAllproducts(auth) {
 	createPaginationButtons()
-	fetchProducts()
+	fetchProducts(auth)
 }
 
-function fetchProducts() {
+function fetchProducts(auth) {
 	let productsHandler = document.getElementById('allproducts-handler')
 	
 	if (productsHandler) {productsHandler.remove()}
@@ -220,12 +262,12 @@ function fetchProducts() {
 			} else {
 				dbPag = data
 			}
-			createAllProductsGrid()
+			createAllProductsGrid(auth)
 		});
 	}
 
 
-	function createAllProductsGrid() {
+	function createAllProductsGrid(auth) {
 		let paginateDiv = document.querySelector('.paginate')
 
 		let newSection = document.createElement("section")
@@ -243,6 +285,11 @@ function fetchProducts() {
 		addProduct.innerHTML = "Adicionar produto"
 		addProduct.href = "?page=addproduct"
 		newSection.appendChild(addProduct)
+		if (auth) {
+			addProduct.style.visibility = 'visible'
+		} else {
+			addProduct.style.visibility = 'hidden'
+		}
 
 		if (productNotFound === false) {
 			createAllProductsCards(newSection);
@@ -637,11 +684,11 @@ async function createProductInfos (productId) {
 function fetchSimilares() {
 	
 	fetch(`https://loja-alura-geek.herokuapp.com/categorias/${currentCategoria}/produtos?id_ne=${paramArray.id}`)
-		.then(response => response.json())
-		.then(data => {
-			dbSimilares = data
-			createSimilaresGrid()
-		});
+	.then(response => response.json())
+	.then(data => {
+		dbSimilares = data
+		createSimilaresGrid()
+	});
 }
 
 
@@ -663,7 +710,7 @@ function createSimilaresGrid() {
 function createSimilaresCards(section) {
 
 	for (let i = 0; i<5;i++){
-	
+
 		let divCard = document.createElement("div")
 		divCard.classList.add("card", "card--home")
 
@@ -691,6 +738,6 @@ function createSimilaresCards(section) {
 		divCard.appendChild(verProduto)
 
 		section.appendChild(divCard)
-	
+
 	}
 }
