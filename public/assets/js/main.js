@@ -1,5 +1,5 @@
 import test from './test.js';
-test.teste()
+console.log(teste)
 
 let dbEmbed = [];
 let dbPag = [];

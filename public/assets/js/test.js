@@ -1,3 +1,3 @@
-const teste = console.log('teste aprovado')
+const teste = 'teste aprovado'
 
 export default teste 
