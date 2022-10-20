@@ -1,10 +1,15 @@
+import test from './test';
+test.teste()
+
 let dbEmbed = [];
-let dbPag = []
-let dbSimilares = []
+let dbPag = [];
+let dbSimilares = [];
 let productNotFound = false
 let currentUrl = "https://loja-alura-geek.herokuapp.com/produtos?_page=1&_limit=10"
 let main = document.querySelector('main')
 let currentCategoria = undefined
+
+
 
 
 
@@ -15,7 +20,6 @@ var paramArray = {};
 for(var i=0; i<params.length; i++) {
     //Dividir os parametros chave e valor
     var param = params[i].split('=');
-
     //Adicionar ao objeto criado antes
     paramArray[param[0]] = param[1];
 }
@@ -24,27 +28,19 @@ document.addEventListener("DOMContentLoaded", defineRota(paramArray.page));
 
 
 async function defineRota (page) {
-	switch (page) {
-		case undefined:
-		case "":
-		case "home":
-			verificaAuth()
-			await fetchDbEmbed();
-			routeHome();
-			break;
+	const auth = verificaAuth()
 
+	switch (page) {
 		case "login":
-			verificaAuth()
 			routeLogin();
 			break;
 
-		case "allproducts":
-			
-			routeAllproducts(verificaAuth());
+		case "allproducts":	
+			routeAllproducts(auth);
 			break
 
 		case "addproduct":
-			if (verificaAuth()){
+			if (auth){
 				routeAddProduct();		
 			} else {
 				alert('Apenas usuários logados podem acessar essa página')
@@ -53,9 +49,12 @@ async function defineRota (page) {
 			break
 
 		case "product":
-			verificaAuth()
 			routProduct();
 			break
+
+		default: 
+			await fetchDbEmbed();
+			routeHome();
 	}
 	
 }
