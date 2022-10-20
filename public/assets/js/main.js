@@ -74,10 +74,9 @@ async function fetchDbEmbed () {
 
 
 function verificaAuth () {
-	const auth = localStorage.getItem('auth');
+	const auth = sessionStorage.getItem('auth');
 	const loginButtonHeader = document.querySelector('[data-login]')
 	if (auth) {
-		
 		loginButtonHeader.style.display = 'none'
 		return true
 	} else {
@@ -229,10 +228,10 @@ function createLoginForm() {
 		const inputPass = document.getElementById('form__login-pass')
 
 		if (inputMail.value === 'teste@teste.com' && inputPass.value === '123456'){
-			localStorage.setItem('auth', true);
+			sessionStorage.setItem('auth', true);
 			window.location.href = 'http://loja-alura-geek.herokuapp.com/'
 		} else {
-			localStorage.setItem('auth', false);
+			sessionStorage.setItem('auth', false);
 			alert('Dados inválidos, tente novamente.')
 		}
 	})
