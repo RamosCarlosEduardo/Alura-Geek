@@ -1,3 +1,4 @@
-const teste = 'teste aprovado'
+export const teste = () => {
+	console.log('teste aprovado')
+}
 
-export default teste 
