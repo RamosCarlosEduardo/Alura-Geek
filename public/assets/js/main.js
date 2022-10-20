@@ -1,4 +1,4 @@
-import test from './test.js';
+import teste from './test.js';
 teste()
 
 let dbEmbed = [];
