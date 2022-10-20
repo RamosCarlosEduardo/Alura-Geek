@@ -1,35 +1,21 @@
-import {teste} from './test.js';
-teste()
-
-let dbEmbed = [];
+export let dbEmbed = [];
+export const mainElement = document.querySelector('main')
+export const urlBase = 'https://loja-alura-geek.herokuapp.com/'
 let dbPag = [];
 let dbSimilares = [];
 let productNotFound = false
-let currentUrl = "https://loja-alura-geek.herokuapp.com/produtos?_page=1&_limit=10"
-let main = document.querySelector('main')
+export let currentUrl = `${urlBase}produtos?_page=1&_limit=10`
 let currentCategoria = undefined
 
 
+import {paramArray} from './modules/getParams.js';
+import {checkAuthentication} from './modules/authentication.js'
+import {routeHome, createHomeBanner, createHomeGrid, createHomeCards} from './modules/home.js'
+import './modules/search.js'
+import {getDb} from './modules/fetch.js'
 
-
-
-var params = window.location.search.substring(1).split('&');
-//Criar objeto que vai conter os parametros
-var paramArray = {};
-//Passar por todos os parametros
-for(var i=0; i<params.length; i++) {
-    //Dividir os parametros chave e valor
-    var param = params[i].split('=');
-    //Adicionar ao objeto criado antes
-    paramArray[param[0]] = param[1];
-}
-
-document.addEventListener("DOMContentLoaded", defineRota(paramArray.page));
-
-
-async function defineRota (page) {
-	const auth = verificaAuth()
-
+const defineRota = async (page) => {
+	const auth = checkAuthentication()
 	switch (page) {
 		case "login":
 			routeLogin();
@@ -44,7 +30,7 @@ async function defineRota (page) {
 				routeAddProduct();		
 			} else {
 				alert('Apenas usuários logados podem acessar essa página')
-				window.location.href = 'https://loja-alura-geek.herokuapp.com/?page=login'			
+				window.location.href = `${urlBase}?page=login`
 			}
 			break
 
@@ -53,17 +39,16 @@ async function defineRota (page) {
 			break
 
 		default: 
-			await fetchDbEmbed();
+			dbEmbed = await getDb(`${urlBase}categorias?_embed=produtos`);
 			routeHome();
 	}
-	
 }
 
+document.addEventListener("DOMContentLoaded", defineRota(paramArray.page));
+
 // baixa o banco de dados de produtos
-
-
 async function fetchDbEmbed () {
-	await fetch('https://loja-alura-geek.herokuapp.com/categorias?_embed=produtos')
+	await fetch(`${urlBase}categorias?_embed=produtos`)
 	.then(response => response.json())
 	.then(data => {
 		dbEmbed = data
@@ -71,104 +56,6 @@ async function fetchDbEmbed () {
 }
 // #--------------------------------#
 
-
-function verificaAuth () {
-	const auth = sessionStorage.getItem('auth');
-	const loginButtonHeader = document.querySelector('[data-login]')
-	if (auth) {
-		loginButtonHeader.style.display = 'none'
-		return true
-	} else {
-		loginButtonHeader.style.display = 'initial'
-		return false
-	}	
-}
-
-
-
-
-// ############### Home #################
-function routeHome () {
-	createHomeBanner();
-	createHomeGrid();
-}
-
-function createHomeBanner () {
-	let section = document.createElement("section")
-	section.classList.add("banner-promo")
-	main.appendChild(section)
-
-	let h2 = document.createElement("h2")
-	h2.classList.add("banner-promo__title")
-	h2.innerHTML = "Dezembro Promocional"
-	section.appendChild(h2)
-
-	let p = document.createElement("p")
-	p.classList.add("banner-promo__text")
-	p.innerHTML = "Produtos selecionados com 33% de desconto"
-	section.appendChild(p)
-
-	let link = document.createElement("a")
-	link.classList.add("button", "button--p", "button--bg", "banner-promo__button")
-	link.innerHTML = "Ver tudo ->"
-	link.setAttribute("href", "?page=allproducts")
-	section.appendChild(link)
-}
-
-function createHomeGrid () {
-	dbEmbed.forEach((el) => {
-		let newSection = document.createElement("section")
-		newSection.classList.add("grid-cards")
-		main.appendChild(newSection)
-
-		let sectionTitle = document.createElement("h2")
-		sectionTitle.classList.add("grid-cards__title")
-		sectionTitle.innerHTML = el.nome
-		newSection.appendChild(sectionTitle)
-
-		let verTudo = document.createElement("a")
-		verTudo.classList.add("produtos__link", "grid-cards__ver-tudo")
-		verTudo.innerHTML = "Ver tudo ->"
-		verTudo.setAttribute("href", "#")
-		verTudo.setAttribute("href", "?page=allproducts")
-		newSection.appendChild(verTudo)
-
-		createHomeCards(el, newSection);
-	})
-}
-
-function createHomeCards (el, section){
-
-	for (let i = 1; i <= 5; i++){
-		let divCard = document.createElement("div")
-		divCard.classList.add("card", "card--home")
-
-		let cardImg = document.createElement("img")
-		cardImg.classList.add("card__img")
-		cardImg.setAttribute("alt", `${el.produtos[i].alt}`)
-		cardImg.setAttribute("src", `${el.produtos[i].img}`)
-		divCard.appendChild(cardImg)
-
-
-		let cardTitle = document.createElement("h3")
-		cardTitle.classList.add("card__titulo")
-		cardTitle.innerHTML = `${el.produtos[i].nome}`
-		divCard.appendChild(cardTitle)
-
-		let cardPreco = document.createElement("p")
-		cardPreco.classList.add("card__preco")
-		cardPreco.innerHTML = `${el.produtos[i].preco.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}`
-		divCard.appendChild(cardPreco)
-
-		let verProduto = document.createElement("a")
-		verProduto.classList.add("produtos__link")
-		verProduto.innerHTML = "Ver produto"
-		verProduto.setAttribute("href", `?page=product&id=${el.produtos[i].id}`)
-		divCard.appendChild(verProduto)
-
-		section.appendChild(divCard)
-	}
-}
 
 // ############### Login ###############
 function routeLogin () {
@@ -178,7 +65,7 @@ function routeLogin () {
 function createLoginForm() {
 	let section = document.createElement("section")
 	section.classList.add("form__section-container")
-	main.appendChild(section)
+	mainElement.appendChild(section)
 
 	let form = document.createElement("form")
 	form.classList.add("form")
@@ -250,9 +137,10 @@ function fetchProducts(auth) {
 	let productsHandler = document.getElementById('allproducts-handler')
 	
 	if (productsHandler) {productsHandler.remove()}
-		if (paramArray.q) {currentUrl = currentUrl + `&q=${paramArray.q}`}
+	
+	if (paramArray.q) {currentUrl = currentUrl + `&q=${paramArray.q}`}
 
-			fetch(currentUrl)
+	fetch(currentUrl)
 		.then(response => response.json())
 		.then(data => {
 			if (data.length === 0){
@@ -262,7 +150,7 @@ function fetchProducts(auth) {
 			}
 			createAllProductsGrid(auth)
 		});
-	}
+}
 
 
 	function createAllProductsGrid(auth) {
@@ -271,7 +159,7 @@ function fetchProducts(auth) {
 		let newSection = document.createElement("section")
 		newSection.classList.add("ver-tudo")
 		newSection.setAttribute('id', 'allproducts-handler')
-		main.insertBefore(newSection, paginateDiv)
+		mainElement.insertBefore(newSection, paginateDiv)
 
 		let sectionTitle = document.createElement("h2")
 		sectionTitle.classList.add("ver-tudo__title")
@@ -295,7 +183,7 @@ function fetchProducts(auth) {
 			let newParagraph = document.createElement("p")
 			newParagraph.classList.add("product-not-found")
 			newParagraph.innerText = "Produto não encontrado."
-			main.insertBefore(newParagraph, paginateDiv)
+			mainElement.insertBefore(newParagraph, paginateDiv)
 
 			paginateDiv.style.display = 'none'
 		}
@@ -334,10 +222,9 @@ function fetchProducts(auth) {
 	}
 
 	function createPaginationButtons() {
-		let main = document.querySelector('main')
 		let newDiv = document.createElement('div')
 		newDiv.classList.add("paginate")
-		main.appendChild(newDiv)
+		mainElement.appendChild(newDiv)
 
 		let buttonFirst = document.createElement('button')
 		buttonFirst.classList.add('button-pag', 'button-pag--first', 'button--p', 'button--bg')
@@ -390,14 +277,6 @@ function fetchProducts(auth) {
 		} );
 	}
 
-// #### SEARCH
-let search = document.querySelector('[data-search-input]')
-search.addEventListener('keydown', (event) => {
-	if (event.key === 'Enter') {
-		window.location.href = `https://loja-alura-geek.herokuapp.com/?page=allproducts&q=${search.value}`
-	}
-})
-
 // ######### ADD PRODUCT
 
 function routeAddProduct () {
@@ -409,7 +288,7 @@ async function createAddProductForm () {
 	// SECTION
 	let section = document.createElement("section")
 	section.classList.add("form__section-container")
-	main.appendChild(section)
+	mainElement.appendChild(section)
 
 	let form = document.createElement("form")
 	form.classList.add("form")
@@ -530,7 +409,7 @@ async function createAddProductForm () {
 	form.appendChild(categoriasList)
 
 	// incluindo options de categorias
-	await fetch('https://loja-alura-geek.herokuapp.com/categorias')
+	await fetch(`${urlBase}categorias`)
 	.then(r => r.json())
 	.then(data => {
 		data.forEach( element => {
@@ -573,7 +452,7 @@ async function adicionarProduto (){
 	// arrumar a busca pelo id, nao ta funcionando ai embaixo. retornando 4
 	// provavelmente pq o looping continua, e o ultimo a ser verificado é o ultimo item
 	// nesse caso o forEach nao vai servir, pq nao existe break. pensar em outra solução
-	await fetch('https://loja-alura-geek.herokuapp.com/categorias')
+	await fetch(`${urlBase}categorias`)
 	.then(r => r.json())
 	.then(data => {
 		for (i in data) {
@@ -605,7 +484,7 @@ async function adicionarProduto (){
 		body: JSON.stringify(newProduct)
 
 	}
-	fetch('https://loja-alura-geek.herokuapp.com/produtos', init)
+	fetch(`${urlBase}produtos`, init)
 	.then(
 		// incluir msg de cadastrado com sucesso e limpar o form
 		alert('Produto cadastrado com sucesso!')
@@ -627,7 +506,7 @@ function adicionarCategoria () {
 		body: JSON.stringify(newCategoria)
 	}
 
-	fetch('https://loja-alura-geek.herokuapp.com/categorias', init)
+	fetch(`${urlBase}categorias`, init)
 	.then(
 		// incluir msg de cadastrado com sucesso e limpar o form
 		console.log('categoria cadastrada com sucesso')
@@ -642,7 +521,9 @@ async function routProduct () {
 }
 
 async function createProductInfos (productId) {
-	await fetch(`https://loja-alura-geek.herokuapp.com/produtos/${productId}`)
+	let produto = []
+
+	await fetch(`${urlBase}produtos/${productId}`)
 	.then(response => response.json())
 	.then(data => produto = data)
 
@@ -676,17 +557,12 @@ async function createProductInfos (productId) {
 	descricao.innerHTML = produto.descricao
 	divTextContainer.appendChild(descricao)
 
-	main.appendChild(divCard)
+	mainElement.appendChild(divCard)
 }
 
-function fetchSimilares() {
-	
-	fetch(`https://loja-alura-geek.herokuapp.com/categorias/${currentCategoria}/produtos?id_ne=${paramArray.id}`)
-	.then(response => response.json())
-	.then(data => {
-		dbSimilares = data
-		createSimilaresGrid()
-	});
+async function fetchSimilares() {
+	dbSimilares = await getDb(`${urlBase}categorias/${currentCategoria}/produtos?id_ne=${paramArray.id}`)
+	createSimilaresGrid()
 }
 
 
@@ -694,7 +570,7 @@ function createSimilaresGrid() {
 
 	let newSection = document.createElement("section")
 	newSection.classList.add("grid-cards", "grid-cards--similares")
-	main.appendChild(newSection)
+	mainElement.appendChild(newSection)
 
 	let sectionTitle = document.createElement("h2")
 	sectionTitle.classList.add("grid-cards__title")
@@ -702,7 +578,6 @@ function createSimilaresGrid() {
 	newSection.appendChild(sectionTitle)
 
 	createSimilaresCards(newSection);
-
 }
 
 function createSimilaresCards(section) {
