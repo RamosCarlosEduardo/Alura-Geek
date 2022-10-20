@@ -228,25 +228,24 @@ function fetchProducts(auth) {
 
 		let buttonFirst = document.createElement('button')
 		buttonFirst.classList.add('button-pag', 'button-pag--first', 'button--p', 'button--bg')
-		buttonFirst.setAttribute('onclick', 'paginate("first")')
+		buttonFirst.addEventListener('click', () => paginate("first"))
 		buttonFirst.textContent = "First"
 		newDiv.appendChild(buttonFirst)
-
 		let buttonPrev = document.createElement('button')
 		buttonPrev.classList.add('button-pag', 'button-pag--prev', 'button--p', 'button--bg')
-		buttonPrev.setAttribute('onclick', 'paginate("prev")')
+		buttonPrev.addEventListener('click', () => paginate("prev"))
 		buttonPrev.textContent = "<< Prev"
 		newDiv.appendChild(buttonPrev)
 
 		let buttonNext = document.createElement('button')
 		buttonNext.classList.add('button-pag', 'button-pag--next', 'button--p', 'button--bg')
-		buttonNext.setAttribute('onclick', 'paginate("next")')
+		buttonNext.addEventListener('click', () => paginate("next"))
 		buttonNext.textContent = "Next >>"
 		newDiv.appendChild(buttonNext)
 
 		let buttonLast = document.createElement('button')
 		buttonLast.classList.add('button-pag', 'button-pag--last', 'button--p', 'button--bg')
-		buttonLast.setAttribute('onclick', 'paginate("last")')
+		buttonLast.addEventListener('click', () => paginate("last"))
 		buttonLast.textContent = "Last"
 		newDiv.appendChild(buttonLast)
 	}
