@@ -1,6 +1,7 @@
 import {paramArray} from './getParams.js';
 import {getDb} from './fetch.js'
 import {mainElement} from '../main.js'
+import {createElement} from './builder.js'
 
 let currentCategoria = undefined
 let dbSimilares = [];

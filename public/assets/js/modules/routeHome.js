@@ -64,7 +64,7 @@ const createHomeGrid = () => {
 }
 
 const createHomeCards = (el, section) => {
-	for (let i = 1; i <= 5; i++){
+	for (let i = 0; i <= 4; i++){
 		let divCard = createElement("div",
 		{
 			class: "card card--home"
