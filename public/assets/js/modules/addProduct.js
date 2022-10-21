@@ -1,5 +1,7 @@
 import {urlBase} from '../main.js'
 import {mainElement} from '../main.js'
+import {createElement} from './builder.js'
+import {getDb} from './fetch.js'
 
 function routeAddProduct () {
 	createAddProductForm()
@@ -7,64 +9,71 @@ function routeAddProduct () {
 }
 
 async function createAddProductForm () {
-	// SECTION
-	let section = document.createElement("section")
-	section.classList.add("form__section-container")
-	mainElement.appendChild(section)
+	let section = createElement("section",
+	{
+		class: "form__section-container"
+	})
+	
+	let form = createElement("form",
+	{
+		class: "form"
+	})
+	
+	let nomeDivFormCx = createElement("div",
+	{
+		class: "form__caixa"
+	})
 
-	let form = document.createElement("form")
-	form.classList.add("form")
-	section.appendChild(form)
+	let nomeInput = createElement("input",
+	{
+		class: "form__input",
+		type: "text",
+		id: "form__add__nome"
+	})
+	
+	let nomeLbl = createElement("label",
+	{
+		class: "form__lbl",
+		for: "form__add__nome",
+			textContent: "Nome do produto"
+	})
+	
+	let urlImgDivFormCx = createElement("div",
+	{
+		class: "form__caixa"
+	})
 
-	// INPUT NAME
-	let nomeDivFormCx = document.createElement("div")
-	nomeDivFormCx.classList.add("form__caixa")
-	form.appendChild(nomeDivFormCx)
-
-	let nomeInput = document.createElement("input")
-	nomeInput.classList.add("form__input")
-	nomeInput.setAttribute("type", "text")
-	nomeInput.setAttribute("id", "form__add__nome")
-	nomeDivFormCx.appendChild(nomeInput)
-
-	let nomeLbl = document.createElement("label")
-	nomeLbl.setAttribute("for", "form__add__nome")
-	nomeLbl.classList.add("form__lbl")
-	nomeLbl.innerText = "Nome do produto"
-	nomeDivFormCx.appendChild(nomeLbl)
-
-	// INPUT URL IMG
-	let urlImgDivFormCx = document.createElement("div")
-	urlImgDivFormCx.classList.add("form__caixa")
-	form.appendChild(urlImgDivFormCx)
-
-	let inputUrlImg = document.createElement("input")
-	inputUrlImg.classList.add("form__input")
-	inputUrlImg.setAttribute("type", "text")
-	inputUrlImg.setAttribute("id", "form__add__url-img")
-	urlImgDivFormCx.appendChild(inputUrlImg)
-
-	let lblUrlImg = document.createElement("label")
-	lblUrlImg.setAttribute("for", "form__url-img")
-	lblUrlImg.classList.add("form__lbl")
-	lblUrlImg.innerText = "URL da imagem"
-	urlImgDivFormCx.appendChild(lblUrlImg)
-
-	// INPUT PREÇO
-	let precoDivFormCx = document.createElement("div")
-	precoDivFormCx.classList.add("form__caixa")
-	form.appendChild(precoDivFormCx)
-
-	let precoInput = document.createElement("input")
-	precoInput.classList.add("form__input")
-	precoInput.setAttribute("type", "text")
-	precoInput.setAttribute("onkeydown", "return event.keyCode !== 69")
-	precoInput.setAttribute("id", "form__add__preco")
-	precoDivFormCx.appendChild(precoInput)
+	let inputUrlImg = createElement("input",
+	{
+		class: "form__input",
+		type: "text",
+		id: "form__add__url-img"
+	})
+	
+	let lblUrlImg = createElement("label",
+	{
+		class: "form__lbl",
+		for: "form__url-img",
+			textContent: "URL da imagem"
+	})
+	
+	let precoDivFormCx = createElement("div",
+	{
+		class: "form__caixa"
+	})
+	
+	let precoInput = createElement("input",
+	{
+		class: "form__input",
+		type: "text",
+		id: "form__add__preco"
+	})
+	precoInput.addEventListener("keydown", () => event.keyCode !== 69)
 	precoInput.addEventListener("focusout", (event) => {
 		let numDesformatado = precoInput.value
 		if (numDesformatado) {
-			let numFormatado = parseFloat(numDesformatado).toLocaleString('pt-BR', { style: 'currency', currency: 'brl' })
+			let numFormatado = parseFloat(numDesformatado)
+				.toLocaleString('pt-BR', { style: 'currency', currency: 'brl' })
 			return precoInput.value = numFormatado
 		}	
 	})
@@ -74,86 +83,115 @@ async function createAddProductForm () {
 
 	})
 
-	let precoLbl = document.createElement("label")
-	precoLbl.setAttribute("for", "form__add__preco")
-	precoLbl.classList.add("form__lbl")
-	precoLbl.innerText = "Preço do produto"
-	precoDivFormCx.appendChild(precoLbl)
-
-	// INPUT DESCRIÇAO
-	let descricaoDivFormCx = document.createElement("div")
-	descricaoDivFormCx.classList.add("form__caixa")
-	form.appendChild(descricaoDivFormCx)
-
-	let descricaoInput = document.createElement("input")
-	descricaoInput.classList.add("form__input")
-	descricaoInput.setAttribute("type", "text")
-	descricaoInput.setAttribute("id", "form__add__descricao")
-	descricaoDivFormCx.appendChild(descricaoInput)
-
-	let descricaoLbl = document.createElement("label")
-	descricaoLbl.setAttribute("for", "form__add__descricao")
-	descricaoLbl.classList.add("form__lbl")
-	descricaoLbl.innerText = "Descricao do produto"
-	descricaoDivFormCx.appendChild(descricaoLbl)
-
-	// INPUT ALT
-	let altImgDivFormCx = document.createElement("div")
-	altImgDivFormCx.classList.add("form__caixa")
-	form.appendChild(altImgDivFormCx)
-
-	let altImgInput = document.createElement("input")
-	altImgInput.classList.add("form__input")
-	altImgInput.setAttribute("type", "text")
-	altImgInput.setAttribute("id", "form__add__altImg")
-	altImgDivFormCx.appendChild(altImgInput)
-
-	let altImgLbl = document.createElement("label")
-	altImgLbl.setAttribute("for", "form__add__altImg")
-	altImgLbl.classList.add("form__lbl")
-	altImgLbl.innerText = "Texto alternativo do produto"
-	altImgDivFormCx.appendChild(altImgLbl)
-
-	// INPUT CATEGORIAS
-	let categoriasDivFormCx = document.createElement("div")
-	categoriasDivFormCx.classList.add("form__caixa")
-	form.appendChild(categoriasDivFormCx)
-
-	let categoriasInput = document.createElement("input")
-	categoriasInput.classList.add("form__input")
-	categoriasInput.setAttribute("type", "text")
-	categoriasInput.setAttribute("list", "categorias-list")
-	categoriasInput.setAttribute("id", "form__add__categoria")
-	categoriasDivFormCx.appendChild(categoriasInput)
-
-	let categoriasList = document.createElement("datalist")
-	categoriasList.setAttribute("id", "categorias-list")
-	form.appendChild(categoriasList)
-
-	// incluindo options de categorias
-	await fetch(`${urlBase}categorias`)
-	.then(r => r.json())
-	.then(data => {
-		data.forEach( element => {
-			let categoriasOption = document.createElement("option")
-			categoriasOption.innerHTML = element.nome
-			categoriasList.appendChild(categoriasOption)
-
-		})
+	let precoLbl = createElement("label",
+	{
+		class: "form__lbl",
+		for: "form__add__preco",
+			textContent: "Preço do produto"
+	})
+	
+	let descricaoDivFormCx = createElement("div",
+	{
+		class: "form__caixa"
+	})
+	
+	let descricaoInput = createElement("input",
+	{
+		class: "form__input",
+		type: "text",
+		id: "form__add__descricao"
 	})
 
-	let categoriasLbl = document.createElement("label")
-	categoriasLbl.setAttribute("for", "form__add__categoria")
-	categoriasLbl.classList.add("form__lbl")
-	categoriasLbl.innerText = "Categoria"
-	categoriasDivFormCx.appendChild(categoriasLbl)
+	let descricaoLbl = createElement("label",
+	{
+		class: "form__lbl",
+		for: "form__add__descricao",
+			textContent: "Descricao do produto"
+	})
 
-	// BUTTON ENVIAR
-	let button = document.createElement("a")
-	button.classList.add("button", "button--p", "button--bg", "form__add__submit")
-	button.innerHTML = "Enviar"
-	form.appendChild(button)
+	// INPUT ALT
+	let altImgDivFormCx = createElement("div",
+	{
+		class: "form__caixa",
+	})
+	
+	let altImgInput = createElement("input",
+	{
+		class: "form__input",
+		type: "text",
+		id: "form__add__altImg"
+	})
+	
+	let altImgLbl = createElement("label",
+	{
+		class: "form__lbl",
+		for: "form__add__altImg",
+			textContent: "Texto alternativo do produto"
+	})
+	
+	// INPUT CATEGORIAS
+	let categoriasDivFormCx = createElement("div",
+	{
+		class: "form__caixa"
+	})
+	
+	let categoriasInput = createElement("input",
+	{
+		class: "form__input",
+		type: "text",
+		list: "categorias-list",
+		id: "form__add__categoria",
+		autocomplete: "off"
+	})
+	
+	let categoriasLbl = createElement("label",
+	{
+		class: "form__lbl",
+		for: "form__add__categoria",
+			textContent: "Categoria"
+	})
+
+	let categoriasList = createElement("datalist",
+	{
+		id: "categorias-list"
+	})
+	
+	const dbCategorias = await getDb(`${urlBase}categorias`)
+	dbCategorias.forEach( element => {
+		let categoriasOption = document.createElement("option")
+		categoriasOption.innerHTML = element.nome
+		categoriasList.appendChild(categoriasOption)
+	})
+
+	let button = createElement("a",
+	{
+		class: "button button--p button--bg form__add__submit",
+		textContent: "Enviar"
+	})
 	button.addEventListener('click', adicionarProduto)
+
+	nomeDivFormCx.append(nomeLbl, nomeInput)
+	urlImgDivFormCx.append(lblUrlImg, inputUrlImg)
+	precoDivFormCx.append(precoLbl, precoInput)
+	descricaoDivFormCx.append(descricaoLbl, descricaoInput)
+	altImgDivFormCx.append(altImgLbl, altImgInput)
+	categoriasDivFormCx.append(categoriasLbl, categoriasInput)
+
+	form.append(
+		nomeDivFormCx,
+		urlImgDivFormCx,
+		precoDivFormCx,
+		descricaoDivFormCx,
+		altImgDivFormCx,
+		categoriasDivFormCx,
+		categoriasList,
+		button
+		)
+
+	section.appendChild(form)
+
+	mainElement.appendChild(section)
+
 }
 
 function desformataCurrency(numFormatado) {
@@ -174,19 +212,19 @@ async function adicionarProduto (){
 	let categoriasId
 
 	await fetch(`${urlBase}categorias`)
-		.then(r => r.json())
-		.then(data => {
-			for (let i in data) {
-				if ( Object.values(data[i]).includes(categoriaInput.value) ) {
-					categoriasId = data[i].id
-				}
+	.then(r => r.json())
+	.then(data => {
+		for (let i in data) {
+			if ( Object.values(data[i]).includes(categoriaInput.value) ) {
+				categoriasId = data[i].id
 			}
-			if (!categoriasId) {
-				categoriasId = data.length + 1
-				adicionarCategoria();
-				console.log("precisa de um put categoria")
-			}
-		})
+		}
+		if (!categoriasId) {
+			categoriasId = data.length + 1
+			adicionarCategoria();
+			console.log("precisa de um put categoria")
+		}
+	})
 	
 	const newProduct = {
 		nome: nome.value,
@@ -206,10 +244,7 @@ async function adicionarProduto (){
 
 	}
 	fetch(`${urlBase}produtos`, init)
-	.then(
-		// incluir msg de cadastrado com sucesso e limpar o form
-		alert('Produto cadastrado com sucesso!')
-		)
+	.then(alert('Produto cadastrado com sucesso!'))
 }
 
 function adicionarCategoria () {
