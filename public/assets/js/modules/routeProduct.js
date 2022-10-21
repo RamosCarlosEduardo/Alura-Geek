@@ -1,10 +1,10 @@
 import {paramArray} from './getParams.js';
 import {getDb} from './fetch.js'
-import {urlBase} from '../main.js'
 import {mainElement} from '../main.js'
 
 let currentCategoria = undefined
 let dbSimilares = [];
+const urlBase = 'https://loja-alura-geek.herokuapp.com/'
 
 async function routProduct () {
 	await createProductInfos(paramArray['id'])

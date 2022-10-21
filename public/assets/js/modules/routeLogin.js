@@ -1,4 +1,4 @@
-import {urlBase} from '../main.js'
+const urlBase = 'https://loja-alura-geek.herokuapp.com/'
 import {mainElement} from '../main.js'
 
 function routeLogin () {

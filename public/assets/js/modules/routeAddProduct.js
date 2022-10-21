@@ -1,4 +1,4 @@
-import {urlBase} from '../main.js'
+const urlBase = 'https://loja-alura-geek.herokuapp.com/'
 import {mainElement} from '../main.js'
 import {createElement} from './builder.js'
 import {getDb} from './fetch.js'
@@ -54,7 +54,7 @@ async function createAddProductForm () {
 	{
 		class: "form__lbl",
 		for: "form__url-img",
-			textContent: "URL da imagem"
+		textContent: "URL da imagem"
 	})
 	
 	let precoDivFormCx = createElement("div",

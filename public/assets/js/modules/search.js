@@ -1,4 +1,4 @@
-import {urlBase} from '../main.js'
+const urlBase = 'https://loja-alura-geek.herokuapp.com/'
 
 
 const searchInputElement = document.querySelector('[data-search-input]')
