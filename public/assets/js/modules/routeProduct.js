@@ -25,7 +25,7 @@ async function createProductInfos (productId) {
 	let cardImg = createElement("img", 
 	{
 		class: "product__img",
-		alt: produto.alt
+		alt: produto.alt,
 		src: produto.img
 	})
 	divCard.appendChild(cardImg)
@@ -89,7 +89,7 @@ function createSimilaresCards(section) {
 
 		let divCard = createElement("div",
 		{
-			class: "card", "card--home",
+			class: "card card--home",
 
 		})
 		divCard.classList.add()
