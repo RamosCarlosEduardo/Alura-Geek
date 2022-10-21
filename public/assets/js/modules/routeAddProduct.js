@@ -106,10 +106,10 @@ async function createAddProductForm () {
 	{
 		class: "form__lbl",
 		for: "form__add__descricao",
-			textContent: "Descricao do produto"
+		textContent: "Descricao do produto"
 	})
 
-	// INPUT ALT
+
 	let altImgDivFormCx = createElement("div",
 	{
 		class: "form__caixa",
@@ -129,7 +129,6 @@ async function createAddProductForm () {
 			textContent: "Texto alternativo do produto"
 	})
 	
-	// INPUT CATEGORIAS
 	let categoriasDivFormCx = createElement("div",
 	{
 		class: "form__caixa"
