@@ -21,6 +21,7 @@ async function fetchProducts(auth) {
 	if (productsHandler) {productsHandler.remove()}
 	if (paramArray.q) {currentUrl = currentUrl + `&q=${paramArray.q}`}
 	dbPag = await getDb(currentUrl)
+	if (!dbPag) {productNotFound = true}
 	createAllProductsGrid(auth)
 }
 
