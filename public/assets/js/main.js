@@ -1,6 +1,3 @@
-export const mainElement = document.querySelector('main')
-export let dbEmbed = [];
-
 import {paramArray} from './modules/getParams.js';
 import {checkAuthentication} from './modules/authentication.js'
 import {routeHome, createHomeBanner, createHomeGrid, createHomeCards} from './modules/routeHome.js'
@@ -38,7 +35,6 @@ const defineRota = async (page) => {
 		break
 
 		default: 
-		dbEmbed = await getDb(`${urlBase}categorias?_embed=produtos`);
 		routeHome();
 	}
 }

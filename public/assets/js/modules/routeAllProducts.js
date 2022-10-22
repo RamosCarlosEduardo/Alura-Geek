@@ -1,14 +1,14 @@
-let urlBase = 'https://loja-alura-geek.herokuapp.com/'
 import {createElement} from './builder.js'
 import {paramArray} from './getParams.js';
 import {getDb} from './fetch.js'
 
+const urlBase = 'https://loja-alura-geek.herokuapp.com/'
+const mainElement = document.querySelector('main')
+let productNotFound = false
+let dbPag = [];
 let currentUrl = `${urlBase}produtos?_page=1&_limit=10`
 
 
-let mainElement = document.querySelector('main')
-let dbPag = [];
-let productNotFound = false
 
 function routeAllproducts(auth) {
 	createPaginationButtons()
@@ -31,14 +31,12 @@ function createAllProductsGrid(auth) {
 		class: 'ver-tudo',
 		id: 'allproducts-handler'
 	})
-	mainElement.insertBefore(newSection, paginateDiv)
-
+	
 	let sectionTitle = createElement("h2",
 	{
 		class: 'ver-tudo__title',
 		textContent: 'Todos os produtos'
 	})
-	newSection.appendChild(sectionTitle)
 
 	let addProduct = createElement("a",
 	{
@@ -47,12 +45,16 @@ function createAllProductsGrid(auth) {
 		href: '?page=addproduct'
 
 	})
-	newSection.appendChild(addProduct)
+	
 	if (auth) {
 		addProduct.style.visibility = 'visible'
 	} else {
 		addProduct.style.visibility = 'hidden'
 	}
+
+	mainElement.insertBefore(newSection, paginateDiv)
+	newSection.appendChild(sectionTitle)
+	newSection.appendChild(addProduct)
 
 	if (productNotFound === false) {
 		createAllProductsCards(newSection);

@@ -1,61 +1,65 @@
+import {createElement} from './builder.js'
+
 const urlBase = 'https://loja-alura-geek.herokuapp.com/'
-import {mainElement} from '../main.js'
+const mainElement = document.querySelector('main')
 
 function routeLogin () {
 	createLoginForm();
 }
 
 function createLoginForm() {
-	let section = document.createElement("section")
-	section.classList.add("form__section-container")
+	let section = createElement("section", {class: "form__section-container"} )
 	mainElement.appendChild(section)
 
-	let form = document.createElement("form")
-	form.classList.add("form")
+	let form = createElement("form", {class: "form"} )
 	section.appendChild(form)
 
-	let mailDivFormCx = document.createElement("div")
-	mailDivFormCx.classList.add("form__caixa")
+	let mailDivFormCx = createElement("div", {class: "form__caixa"} )
 	form.appendChild(mailDivFormCx)
 
-	let inputMail = document.createElement("input")
-	inputMail.classList.add("login__mail", "form__input")
-	inputMail.setAttribute("type", "text")
-	inputMail.setAttribute("id", "form__login-mail")
+	let inputMail = createElement("input", 
+	{
+		class: "login__mail form__input",
+		type: "email",
+		id: "form__login-mail"
+	})
 	mailDivFormCx.appendChild(inputMail)
 
-	let lblMail = document.createElement("label")
-	lblMail.setAttribute("for", "form__login-mail")
-	lblMail.classList.add("form__lbl")
-	lblMail.innerText = "Escreva seu e-mail"
+	let lblMail = createElement("label",
+	{
+		for: "form__login-mail",
+		class: "form__lbl",
+		textContent: "Escreva seu e-mail"
+	})
 	mailDivFormCx.appendChild(lblMail)
 
-	let passDivFormCx = document.createElement("div")
-	passDivFormCx.classList.add("form__caixa")
+	let passDivFormCx = createElement("div", {class: "form__caixa"})
 	form.appendChild(passDivFormCx)
 
-	let inputPass = document.createElement("input")
-	inputPass.classList.add("login__pass", "form__input")
-	inputPass.setAttribute("type", "password")
-	inputPass.setAttribute("id", "form__login-pass")
+	let inputPass = createElement("input",
+	{
+		class: "login__pass form__input",
+		type: "password",
+		id: "form__login-pass"
+	})
 	passDivFormCx.appendChild(inputPass)
 
-	let lblPass = document.createElement("label")
-	lblPass.setAttribute("for", "form__login-pass")
-	lblPass.classList.add("form__lbl")
-	lblPass.innerText = "Escreva sua senha"
+	let lblPass = createElement("label",
+	{
+		for: "form__login-pass",
+		class: "form__lbl",
+		textContent: "Escreva sua senha"
+	})
 	passDivFormCx.appendChild(lblPass)
 
-	let button = document.createElement("a")
-	button.classList.add("button", "button--p", "button--bg", "login__submit")
-	button.innerHTML = "Entrar"
+	let button = createElement("a",
+	{
+		class: "button button--p button--bg login__submit",
+		textContent: "Entrar"
+	})
 	form.appendChild(button)
 
-	const loginButton = document.querySelector('.login__submit')
-	loginButton.addEventListener('click', (event) => {
-		const inputMail = document.getElementById('form__login-mail')
-		const inputPass = document.getElementById('form__login-pass')
-
+	button.addEventListener('click', (event) => {
 		if (inputMail.value === 'teste@teste.com' && inputPass.value === '123456'){
 			sessionStorage.setItem('auth', true);
 			window.location.href = `${urlBase}`

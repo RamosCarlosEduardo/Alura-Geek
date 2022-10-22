@@ -1,5 +1,5 @@
 const urlBase = 'https://loja-alura-geek.herokuapp.com/'
-import {mainElement} from '../main.js'
+const mainElement = document.querySelector('main')
 import {createElement} from './builder.js'
 import {getDb} from './fetch.js'
 
@@ -9,20 +9,11 @@ function routeAddProduct () {
 }
 
 async function createAddProductForm () {
-	let section = createElement("section",
-	{
-		class: "form__section-container"
-	})
+	let section = createElement("section", {class: "form__section-container"} )
 	
-	let form = createElement("form",
-	{
-		class: "form"
-	})
+	let form = createElement("form", {class: "form"} )
 	
-	let nomeDivFormCx = createElement("div",
-	{
-		class: "form__caixa"
-	})
+	let nomeDivFormCx = createElement("div", {class: "form__caixa"} )
 
 	let nomeInput = createElement("input",
 	{
@@ -38,10 +29,7 @@ async function createAddProductForm () {
 			textContent: "Nome do produto"
 	})
 	
-	let urlImgDivFormCx = createElement("div",
-	{
-		class: "form__caixa"
-	})
+	let urlImgDivFormCx = createElement("div", {class: "form__caixa"} )
 
 	let inputUrlImg = createElement("input",
 	{
@@ -57,10 +45,7 @@ async function createAddProductForm () {
 		textContent: "URL da imagem"
 	})
 	
-	let precoDivFormCx = createElement("div",
-	{
-		class: "form__caixa"
-	})
+	let precoDivFormCx = createElement("div", {class: "form__caixa"} )
 	
 	let precoInput = createElement("input",
 	{
@@ -90,10 +75,7 @@ async function createAddProductForm () {
 			textContent: "Preço do produto"
 	})
 	
-	let descricaoDivFormCx = createElement("div",
-	{
-		class: "form__caixa"
-	})
+	let descricaoDivFormCx = createElement("div", {class: "form__caixa"} )
 	
 	let descricaoInput = createElement("input",
 	{
@@ -110,10 +92,7 @@ async function createAddProductForm () {
 	})
 
 
-	let altImgDivFormCx = createElement("div",
-	{
-		class: "form__caixa",
-	})
+	let altImgDivFormCx = createElement("div", {class: "form__caixa"} )
 	
 	let altImgInput = createElement("input",
 	{
@@ -129,10 +108,7 @@ async function createAddProductForm () {
 			textContent: "Texto alternativo do produto"
 	})
 	
-	let categoriasDivFormCx = createElement("div",
-	{
-		class: "form__caixa"
-	})
+	let categoriasDivFormCx = createElement("div", {class: "form__caixa"} )
 	
 	let categoriasInput = createElement("input",
 	{
@@ -150,10 +126,7 @@ async function createAddProductForm () {
 			textContent: "Categoria"
 	})
 
-	let categoriasList = createElement("datalist",
-	{
-		id: "categorias-list"
-	})
+	let categoriasList = createElement("datalist", {id: "categorias-list"} )
 	
 	const dbCategorias = await getDb(`${urlBase}categorias`)
 	dbCategorias.forEach( element => {
@@ -190,7 +163,6 @@ async function createAddProductForm () {
 	section.appendChild(form)
 
 	mainElement.appendChild(section)
-
 }
 
 function desformataCurrency(numFormatado) {
@@ -210,20 +182,16 @@ async function adicionarProduto (){
 	let altImg = document.getElementById('form__add__altImg')
 	let categoriasId
 
-	await fetch(`${urlBase}categorias`)
-	.then(r => r.json())
-	.then(data => {
-		for (let i in data) {
-			if ( Object.values(data[i]).includes(categoriaInput.value) ) {
-				categoriasId = data[i].id
-			}
+	let data = await getDb(`${urlBase}categorias`)
+	for (let i in data) {
+		if ( Object.values(data[i]).includes(categoriaInput.value) ) {
+			categoriasId = data[i].id
 		}
-		if (!categoriasId) {
-			categoriasId = data.length + 1
-			adicionarCategoria();
-			console.log("precisa de um put categoria")
-		}
-	})
+	}
+	if (!categoriasId) {
+		categoriasId = data.length + 1
+		adicionarCategoria();
+	}
 	
 	const newProduct = {
 		nome: nome.value,
@@ -243,7 +211,10 @@ async function adicionarProduto (){
 
 	}
 	fetch(`${urlBase}produtos`, init)
-	.then(alert('Produto cadastrado com sucesso!'))
+		.then( () => {
+			alert('Produto cadastrado com sucesso!')
+			window.location.href = urlBase
+			})
 }
 
 function adicionarCategoria () {

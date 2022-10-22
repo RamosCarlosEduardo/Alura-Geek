@@ -1,8 +1,12 @@
-import {dbEmbed} from '../main.js'
-import {mainElement} from '../main.js'
 import {createElement} from './builder.js'
+import {getDb} from './fetch.js'
 
-const routeHome = () => {
+let dbEmbed = [];
+const urlBase = 'https://loja-alura-geek.herokuapp.com/'
+const mainElement = document.querySelector('main')
+
+const routeHome = async() => {
+	dbEmbed = await getDb(`${urlBase}categorias?_embed=produtos`);
 	createHomeBanner();
 	createHomeGrid();
 }
