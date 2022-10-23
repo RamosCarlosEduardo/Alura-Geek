@@ -1,7 +1,8 @@
 export function checkAuthentication () {
 	const auth = sessionStorage.getItem('auth');
 	const loginButtonHeader = document.querySelector('[data-login]')
-	if (auth) {
+
+	if (auth == "true") {
 		loginButtonHeader.style.display = 'none'
 		return true
 	} else {

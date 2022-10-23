@@ -8,8 +8,6 @@ let productNotFound = false
 let dbPag = [];
 let currentUrl = `${urlBase}produtos?_page=1&_limit=10`
 
-
-
 function routeAllproducts(auth) {
 	createPaginationButtons()
 	fetchProducts(auth)
@@ -21,7 +19,7 @@ async function fetchProducts(auth) {
 	if (productsHandler) {productsHandler.remove()}
 	if (paramArray.q) {currentUrl = currentUrl + `&q=${paramArray.q}`}
 	dbPag = await getDb(currentUrl)
-	if (!dbPag) {productNotFound = true}
+	if (dbPag.length === 0) {productNotFound = true}
 	createAllProductsGrid(auth)
 }
 
@@ -53,10 +51,10 @@ function createAllProductsGrid(auth) {
 		addProduct.style.visibility = 'hidden'
 	}
 
+	newSection.append(sectionTitle, addProduct)
 	mainElement.insertBefore(newSection, paginateDiv)
-	newSection.appendChild(sectionTitle)
-	newSection.appendChild(addProduct)
-
+	
+	
 	if (productNotFound === false) {
 		createAllProductsCards(newSection);
 	} else {
@@ -66,16 +64,13 @@ function createAllProductsGrid(auth) {
 			textContent: "Produto não encontrado."
 		})
 		mainElement.insertBefore(newParagraph, paginateDiv)
-
 		paginateDiv.style.display = 'none'
 	}
 }
 
 function createAllProductsCards(section) {
 	dbPag.forEach(produto => {
-		let divCard = createElement("div", {
-			class: "card"
-		})
+		let divCard = createElement("div", {class: "card"} )
 		
 		let cardImg = createElement("img", 
 		{
@@ -83,29 +78,32 @@ function createAllProductsCards(section) {
 			alt: produto.alt,
 			src: produto.img
 		})
-		divCard.appendChild(cardImg)
-
+		
 		let cardTitle = createElement("h3",
 		{
-			class: 'card__titulo',
+			class: "card__titulo",
 			textContent: produto.nome
 		})
-		divCard.appendChild(cardTitle)
 
 		let cardPreco = createElement("p",
 		{
 			class:'card__preco',
 			textContent: produto.preco.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})
 		})
-		divCard.appendChild(cardPreco)
 
-		let verProduto = createElement("a", {
+		let verProduto = createElement("a", 
+		{
 			class: 'produtos__link',
 			textContent: "Ver produto",
 			href: `?page=product&id=${produto.id}`
 		})
-		divCard.appendChild(verProduto)
-
+		
+		divCard.append(
+			cardImg,
+			cardTitle,
+			cardPreco,
+			verProduto
+			)
 		section.appendChild(divCard)
 	})
 }

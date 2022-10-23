@@ -69,10 +69,7 @@ const createHomeGrid = () => {
 
 const createHomeCards = (el, section) => {
 	for (let i = 0; i <= 4; i++){
-		let divCard = createElement("div",
-		{
-			class: "card card--home"
-		})
+		let divCard = createElement("div", {class: "card card--home"} )
 		
 		let cardImg = createElement("img",
 		{
@@ -98,10 +95,14 @@ const createHomeCards = (el, section) => {
 			class: "produtos__link",
 			textContent: "Ver produto",
 			href: `?page=product&id=${el.produtos[i].id}`
-
 		})
 
-		divCard.append(cardImg, cardTitle, cardPreco,verProduto)
+		divCard.append(
+			cardImg,
+			cardTitle,
+			cardPreco,
+			verProduto
+			)
 		section.appendChild(divCard)
 	}
 }

@@ -17,6 +17,10 @@ const defineRota = async (page) => {
 		routeLogin();
 		break;
 
+		case "loginerror":
+		// routeLoginError();
+		break;
+
 		case "allproducts":	
 		routeAllproducts(auth);
 		break
@@ -40,3 +44,4 @@ const defineRota = async (page) => {
 }
 
 document.addEventListener("DOMContentLoaded", () => defineRota(paramArray.page));
+

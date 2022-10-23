@@ -2,48 +2,64 @@ const urlBase = 'https://loja-alura-geek.herokuapp.com/'
 const mainElement = document.querySelector('main')
 import {createElement} from './builder.js'
 import {getDb} from './fetch.js'
+import {validate} from './formvalidations.js'
 
 function routeAddProduct () {
 	createAddProductForm()
-	console.log('adicionar produto')
 }
 
 async function createAddProductForm () {
 	let section = createElement("section", {class: "form__section-container"} )
 	
 	let form = createElement("form", {class: "form"} )
-	
+	form.addEventListener('submit', (event) => {
+		event.preventDefault()
+		adicionarProduto()
+	})
+
 	let nomeDivFormCx = createElement("div", {class: "form__caixa"} )
 
 	let nomeInput = createElement("input",
 	{
 		class: "form__input",
 		type: "text",
-		id: "form__add__nome"
+		id: "form__add__nome",
+		required:"",
+		'data-input':"name",
 	})
-	
 	let nomeLbl = createElement("label",
 	{
 		class: "form__lbl",
 		for: "form__add__nome",
-			textContent: "Nome do produto"
+		textContent: "Nome do produto"
 	})
-	
-	let urlImgDivFormCx = createElement("div", {class: "form__caixa"} )
+	let nomeSpan = createElement("span",
+	{
+		class: "span-rule",
+		textContent: ""
+	})		
 
+
+	let urlImgDivFormCx = createElement("div", {class: "form__caixa"} )
 	let inputUrlImg = createElement("input",
 	{
 		class: "form__input",
 		type: "text",
-		id: "form__add__url-img"
+		id: "form__add__url-img",
+		required:"",
+		'data-input':"imgurl",
 	})
-	
 	let lblUrlImg = createElement("label",
 	{
 		class: "form__lbl",
 		for: "form__url-img",
 		textContent: "URL da imagem"
 	})
+	let urlImgSpan = createElement("span",
+	{
+		class: "span-rule",
+		textContent: ""
+	})		
 	
 	let precoDivFormCx = createElement("div", {class: "form__caixa"} )
 	
@@ -51,7 +67,9 @@ async function createAddProductForm () {
 	{
 		class: "form__input",
 		type: "text",
-		id: "form__add__preco"
+		id: "form__add__preco",
+		required:"",
+		'data-input':"price",
 	})
 	precoInput.addEventListener("keydown", () => event.keyCode !== 69)
 	precoInput.addEventListener("focusout", (event) => {
@@ -67,7 +85,11 @@ async function createAddProductForm () {
 		precoInput.value = desformataCurrency(numFormatado)
 
 	})
-
+	let precoSpan = createElement("span",
+	{
+		class: "span-rule",
+		textContent: ""
+	})		
 	let precoLbl = createElement("label",
 	{
 		class: "form__lbl",
@@ -76,14 +98,19 @@ async function createAddProductForm () {
 	})
 	
 	let descricaoDivFormCx = createElement("div", {class: "form__caixa"} )
-	
 	let descricaoInput = createElement("input",
 	{
 		class: "form__input",
 		type: "text",
-		id: "form__add__descricao"
+		id: "form__add__descricao",
+		required:"",
+		'data-input':"description",
 	})
-
+	let descricaoSpan = createElement("span",
+	{
+		class: "span-rule",
+		textContent: ""
+	})		
 	let descricaoLbl = createElement("label",
 	{
 		class: "form__lbl",
@@ -93,37 +120,47 @@ async function createAddProductForm () {
 
 
 	let altImgDivFormCx = createElement("div", {class: "form__caixa"} )
-	
 	let altImgInput = createElement("input",
 	{
 		class: "form__input",
 		type: "text",
-		id: "form__add__altImg"
+		id: "form__add__altImg",
+		required:"",
+		'data-input':"alternative",
 	})
-	
+	let altImgSpan = createElement("span",
+	{
+		class: "span-rule",
+		textContent: ""
+	})		
 	let altImgLbl = createElement("label",
 	{
 		class: "form__lbl",
 		for: "form__add__altImg",
-			textContent: "Texto alternativo do produto"
+		textContent: "Texto alternativo do produto"
 	})
 	
 	let categoriasDivFormCx = createElement("div", {class: "form__caixa"} )
-	
 	let categoriasInput = createElement("input",
 	{
 		class: "form__input",
 		type: "text",
 		list: "categorias-list",
 		id: "form__add__categoria",
-		autocomplete: "off"
+		autocomplete: "off",
+		required:"",
+		'data-input':"category",
 	})
-	
+	let categoriasSpan = createElement("span",
+	{
+		class: "span-rule",
+		textContent: ""
+	})		
 	let categoriasLbl = createElement("label",
 	{
 		class: "form__lbl",
 		for: "form__add__categoria",
-			textContent: "Categoria"
+		textContent: "Categoria"
 	})
 
 	let categoriasList = createElement("datalist", {id: "categorias-list"} )
@@ -135,19 +172,19 @@ async function createAddProductForm () {
 		categoriasList.appendChild(categoriasOption)
 	})
 
-	let button = createElement("a",
+	let button = createElement("input",
 	{
 		class: "button button--p button--bg form__add__submit",
-		textContent: "Enviar"
+		textContent: "Enviar",
+		type: "submit"
 	})
-	button.addEventListener('click', adicionarProduto)
-
-	nomeDivFormCx.append(nomeLbl, nomeInput)
-	urlImgDivFormCx.append(lblUrlImg, inputUrlImg)
-	precoDivFormCx.append(precoLbl, precoInput)
-	descricaoDivFormCx.append(descricaoLbl, descricaoInput)
-	altImgDivFormCx.append(altImgLbl, altImgInput)
-	categoriasDivFormCx.append(categoriasLbl, categoriasInput)
+	
+	nomeDivFormCx.append(nomeInput, nomeSpan, nomeLbl)
+	urlImgDivFormCx.append(inputUrlImg, urlImgSpan, lblUrlImg)
+	precoDivFormCx.append(precoInput, precoSpan, precoLbl)
+	descricaoDivFormCx.append(descricaoInput, descricaoSpan, descricaoLbl)
+	altImgDivFormCx.append(altImgInput, altImgSpan, altImgLbl)
+	categoriasDivFormCx.append(categoriasInput, categoriasSpan, categoriasLbl)
 
 	form.append(
 		nomeDivFormCx,
@@ -163,6 +200,14 @@ async function createAddProductForm () {
 	section.appendChild(form)
 
 	mainElement.appendChild(section)
+
+	let inputsToValidate = form.querySelectorAll('[data-input]')
+	inputsToValidate.forEach(input => {
+		input.addEventListener('keyup', (event) => {
+		 	validate(input)
+		})
+	})
+
 }
 
 function desformataCurrency(numFormatado) {
@@ -174,6 +219,7 @@ function desformataCurrency(numFormatado) {
 }
 
 async function adicionarProduto (){
+	console.log("ooopa chamou")
 	let urlImg = document.getElementById('form__add__url-img')
 	let categoriaInput = document.getElementById('form__add__categoria')
 	let nome = document.getElementById('form__add__nome')
