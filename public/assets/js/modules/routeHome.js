@@ -12,6 +12,10 @@ const routeHome = async() => {
 }
 
 const createHomeBanner = () => {
+	var data = new Date
+	var month = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho",
+	"Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"][data.getMonth()];
+
 	let section = createElement('section',
 	{
 		class: 'banner-promo'
@@ -20,7 +24,7 @@ const createHomeBanner = () => {
 	let h2 = createElement("h2", 
 	{
 		class: 'banner-promo__title',
-		textContent: "Dezembro Promocional"
+		textContent: `${month} Promocional`
 	})
 	
 	let p = createElement("p", 
