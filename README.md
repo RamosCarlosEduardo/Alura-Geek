@@ -31,7 +31,7 @@ Nas semanas seguintes, novas tarefas e requisitos são entregues até a conclus�
 </details>
 
 <details>
-<summary><b>Detalhes de como foi desenvolvido meu projeto Alura Geek</b></summary>
+<summary><b>Detalhes de como foi desenvolvido meu projeto Alura Geek.</b></summary>
 O projeto consistia na criação da página de um e-commerce de produtos Geek.<br>
 A página foi desenvoldida com HTML, CSS e JavaScript puros.<br>
 Como o projeto foi desenvolvido apenas com Front-End, foi utilizado um <b>JSON-Server</b> para simular uma API de consulta a um banco de dados.<br>
@@ -50,6 +50,23 @@ Dados para login:
 <li>E-mail: teste@teste.com</li>
 <li>Senha: Ab1234</li>
 </ul>
+
+<details><summary><b>Agradecimentos!</b></summary>
+Obrigado à equipe da Alura pelo desenvolvimento desse projeto. Principalmente à <b>@MoniHillman</b> e ao <b>@AntonioEvaldo</b> que coordenaram o desenvolvimento do Callenge e as lives.<br>
+Foi muito legal ter participado e com certeza contribuiu muito pro meu desenvolvimento.<br>
+Espero participar do próximo já conhecimento mais aprofundado, para que possa desenvolver utilizando frameworks.<br>
+<br>
+Um agradecimento especial para alguns membros do Discord da Alura:<br>
+<br>
+<b>@SucoDeLarangela</b>: por ter me indicado a possibilidade de usar o Json Server que eu ainda nao conhecia. Sem isso, meu resultado teria sido completamente diferente. E por disponibilizar seu repositório para consulta, que embora tenha sido desenvolvido com outras tecnologias, me ajudou muito como inspiração.
+Mesmo tendo tirado férias no meio do challenge, consegui antecipar as funcionalidades necessárias com base no seu projeto e no layout do Figma, e por isso não perdi os prazos.<br>
+<br>
+<b>@EduHcb</b>, por ter se disponibilizado a fazer um Code Review no meu projeto inacabado, dando várias sugestões de melhorias.<br>
+E também pela ajuda com os "imports" no JS. Ter aprendido isso me ajudou demais a conseguir organizar melhor os arquivos do projeto, modularizando diveras funções e componentes.<br>
+</br>
+<b>@LucasFugisawa</b>, pela paciência ao tentar me explicar sobre a assincronicidade do JavaScript. kkkk<br>
+Embora a dúvida no Discord não tenha surgido por causa do meu projeto, a conversa que sucedeu me ajudou muito a entender melhor o que eu estava fazendo, pois o Challenge foi minha primeira experiência utilizando o fetch.
+</details>
 
 
 | :placard: Vitrine.Dev  |     |
