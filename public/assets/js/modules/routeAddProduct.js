@@ -71,13 +71,15 @@ async function createAddProductForm () {
 		required:"",
 		'data-input':"price",
 	})
-	precoInput.addEventListener("keydown", () => event.keyCode !== 69)
 	precoInput.addEventListener("focusout", (event) => {
 		let numDesformatado = precoInput.value
 		if (numDesformatado) {
 			let numFormatado = parseFloat(numDesformatado)
 				.toLocaleString('pt-BR', { style: 'currency', currency: 'brl' })
-			return precoInput.value = numFormatado
+			if (numFormatado.includes('NaN')){
+			return precoInput.value = ""
+			}
+			return precoInput.value = numFormatado	
 		}	
 	})
 	precoInput.addEventListener("focusin", (event) => {
@@ -219,7 +221,6 @@ function desformataCurrency(numFormatado) {
 }
 
 async function adicionarProduto (){
-	console.log("ooopa chamou")
 	let urlImg = document.getElementById('form__add__url-img')
 	let categoriaInput = document.getElementById('form__add__categoria')
 	let nome = document.getElementById('form__add__nome')
@@ -281,7 +282,7 @@ function adicionarCategoria () {
 	fetch(`${urlBase}categorias`, init)
 	.then(
 		// incluir msg de cadastrado com sucesso e limpar o form
-		console.log('categoria cadastrada com sucesso')
+		console.log('Categoria cadastrada com sucesso')
 		)
 }
 
