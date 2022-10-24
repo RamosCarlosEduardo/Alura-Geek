@@ -41,15 +41,6 @@ Esse arquivo é manipulado via JavaScript, conforme as rotas passadas na URL. No
 Para as requisições HTTP foi utilizada a Fetch API.<br>
 Para salvar a informação de que o usuário está logado, foi utilizado o WebStorage (Session Storage).
 </details>
-<hr>
-Para ter acesso à página de "Adicionar novos produtos" é necessário que o usuário esteja Logado.<br>
-Após realizar o login, o botão de Adicionar Produto ficará habilitado na página Todos os Produtos.
-
-Dados para login:
-<ul>
-<li>E-mail: teste@teste.com</li>
-<li>Senha: Ab1234</li>
-</ul>
 
 <details><summary><b>Agradecimentos!</b></summary>
 Obrigado à equipe da Alura pelo desenvolvimento desse projeto. Principalmente à <b>@MoniHillman</b> e ao <b>@AntonioEvaldo</b> que coordenaram o desenvolvimento do Challenge e as lives.<br>
@@ -67,6 +58,17 @@ E também pela ajuda com os "imports" no JS. Ter aprendido isso me ajudou demais
 <b>@LucasFugisawa</b>, pela paciência ao tentar me explicar sobre a assincronicidade do JavaScript. kkkk<br>
 Embora a dúvida no Discord não tenha surgido por causa do meu projeto, a conversa que sucedeu me ajudou muito a entender melhor o que eu estava fazendo, pois o Challenge foi minha primeira experiência utilizando o fetch.
 </details>
+<hr>
+Para ter acesso à página de "Adicionar novos produtos" é necessário que o usuário esteja Logado.<br>
+Após realizar o login, o botão de Adicionar Produto ficará habilitado na página Todos os Produtos.
+
+Dados para login:
+<ul>
+<li>E-mail: teste@teste.com</li>
+<li>Senha: Ab1234</li>
+</ul>
+
+
 
 
 | :placard: Vitrine.Dev  |     |
