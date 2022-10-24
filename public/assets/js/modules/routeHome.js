@@ -36,7 +36,7 @@ const createHomeBanner = () => {
 	let link = createElement("a", 
 	{
 		class: 'button button--p button--bg banner-promo__button',
-		textContent: "Ver tudo ->",
+		textContent: "Ver tudo →",
 		href: "?page=allproducts"
 	})
 	
@@ -60,7 +60,7 @@ const createHomeGrid = () => {
 		let verTudo = createElement("a",
 		{
 			class: "produtos__link grid-cards__ver-tudo",
-			textContent: "Ver tudo ->",
+			textContent: "Ver tudo →",
 			href: "?page=allproducts"
 		})
 		
