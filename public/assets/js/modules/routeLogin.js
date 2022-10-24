@@ -74,6 +74,7 @@ function createLoginForm() {
 			window.location.href = `${urlBase}?page=allproducts`
 		} else {
 			sessionStorage.setItem('auth', false);
+			alert('Dados inválidos, tente novamente.')
 			// window.location.href = `${urlBase}?page=loginerror`
 		}
 	})
