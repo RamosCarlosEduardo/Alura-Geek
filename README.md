@@ -45,7 +45,7 @@ Para salvar a informação de que o usuário está logado, foi utilizado o WebSt
 <details><summary><b>Agradecimentos!</b></summary>
 Obrigado à equipe da Alura pelo desenvolvimento desse projeto. Principalmente à <b>@MoniHillman</b> e ao <b>@AntonioEvaldo</b> que coordenaram o desenvolvimento do Challenge e as lives.<br>
 Foi muito legal ter participado e com certeza contribuiu muito pro meu desenvolvimento.<br>
-Espero participar do próximo já conhecimento mais aprofundado, para que possa desenvolver utilizando frameworks.<br>
+Espero participar do próximo já com conhecimento mais aprofundado, para que possa desenvolver utilizando frameworks.<br>
 <br>
 Um agradecimento especial para alguns membros do Discord da Alura:<br>
 <br>
