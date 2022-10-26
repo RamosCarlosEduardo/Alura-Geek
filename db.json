@@ -18,7 +18,7 @@
       "id": 1,
       "nome": "Dart Vader",
       "img": "https://st2.depositphotos.com/1900167/10244/i/600/depositphotos_102441634-stock-photo-people-of-501st-legion-take.jpg",
-      "preco": 60.01,
+      "preco": 61.01,
       "descricao": "Star Wars (Brasil: Guerra nas Estrelas / Portugal: Guerra das Estrelas) é uma franquia do tipo space opera estadunidense criada pelo cineasta George Lucas, que conta com uma série de nove filmes de fantasia científica e dois spin-offs.",
       "alt": "Homem com máscara e capacete preto",
       "categoriaId": 1
@@ -27,7 +27,7 @@
       "id": 2,
       "nome": "Sabres de luz",
       "img": "https://st2.depositphotos.com/1482677/9746/v/450/depositphotos_97468974-stock-illustration-master-weapon-equipment.jpg",
-      "preco": 61.02,
+      "preco": 60.02,
       "descricao": "As cores dos sabres de luz eram originados nas respectivas cores dos cristais neles contidos. Esses cristais eram comumente encontrados na Caverna de Cristal no planeta Ilum ou em outros planetas que também possuíam cristais.",
       "alt": "duas espadas cruzadas",
       "categoriaId": 1      
