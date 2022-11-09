@@ -75,7 +75,7 @@ Dados para login:
 | -------------- | --- |
 | :sparkles: Nome        | **Alura Geek** |
 | :label: Tecnologias | HTML, CSS e Javascript |
-| :rocket: URL         | [**Acesse o site**](https://loja-alura-geek.herokuapp.com/) |
+| :rocket: URL         | [**Acesse o site**](shopalurageek.vercel.app) |
 | :fire: Desafio     | [**Protótipo no Figma**](https://www.figma.com/file/fR9qvy3gU53s2q5efeMpy9/AluraGeek---Challenge) |
 
 
@@ -89,6 +89,6 @@ Project developed during the Challenge Front-End 5th Edition of Alura!
 | -------------- | --- |
 | ✨ Name        | **Alura Geek** |
 | 🏷️ Technologies | HTML, CSS e Javascript  |
-| 🚀 URL         | [**Go to the website**](https://loja-alura-geek.herokuapp.com/) |
+| 🚀 URL         | [**Go to the website**](shopalurageek.vercel.app) |
 | 🔥 Challenge     | [**Figma's prototype**](https://www.figma.com/file/fR9qvy3gU53s2q5efeMpy9/AluraGeek---Challenge) |
 
