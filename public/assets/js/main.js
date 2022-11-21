@@ -8,7 +8,8 @@ import {routProduct, createProductInfos, fetchSimilares, createSimilaresGrid, cr
 import {routeAddProduct, createAddProductForm, desformataCurrency, adicionarProduto, adicionarCategoria} from './modules/routeAddProduct.js'
 import {routeAllproducts} from './modules/routeAllProducts.js'
 
-const urlBase = 'https://shopalurageek.vercel.app/'
+// const urlBase = 'https://shopalurageek.vercel.app/'
+const urlBase = "https://loja-alura-geek.herokuapp.com/"
 
 const defineRota = async (page) => {
 	const auth = checkAuthentication()
