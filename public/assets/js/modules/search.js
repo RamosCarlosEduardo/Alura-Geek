@@ -1,5 +1,5 @@
-// const urlBase = 'https://loja-alura-geek.herokuapp.com/'
-const urlBase = 'http://127.0.0.1:5000/'
+const urlBase = 'https://loja-alura-geek.herokuapp.com/'
+//const urlBase = 'https://shopalurageek.vercel.app/'
 
 const searchInputElement = document.querySelector('[data-search-input]')
 
