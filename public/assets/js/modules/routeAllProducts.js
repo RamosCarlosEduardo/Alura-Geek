@@ -2,7 +2,7 @@ import {createElement} from './builder.js'
 import {paramArray} from './getParams.js';
 import {getDb} from './fetch.js'
 
-const urlBase = 'https://loja-alura-geek.herokuapp.com/'
+const urlBase = 'https://api-alura-geek-m9z68l5ss-ramoscarloseduardo.vercel.app/'
 const mainElement = document.querySelector('main')
 let productNotFound = false
 let dbPag = [];

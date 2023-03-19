@@ -16,8 +16,5 @@
   "bugs": {
     "url": "https://github.com/RamosCarlosEduardo/Alura-Geek/issues"
   },
-  "homepage": "https://github.com/RamosCarlosEduardo/Alura-Geek#readme",
-  "dependencies": {
-    "json-server": "^0.17.0"
-  }
+  "homepage": "https://github.com/RamosCarlosEduardo/Alura-Geek#readme"
 }

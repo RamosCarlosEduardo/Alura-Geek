@@ -5,7 +5,7 @@ import {createElement} from './builder.js'
 const mainElement = document.querySelector('main')
 let currentCategoria = undefined
 let dbSimilares = [];
-const urlBase = 'https://loja-alura-geek.herokuapp.com/'
+const urlBase = 'https://api-alura-geek-m9z68l5ss-ramoscarloseduardo.vercel.app/'
 
 async function routProduct () {
 	await createProductInfos(paramArray['id'])

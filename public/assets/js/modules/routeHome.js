@@ -2,7 +2,7 @@ import {createElement} from './builder.js'
 import {getDb} from './fetch.js'
 
 let dbEmbed = [];
-const urlBase = 'https://loja-alura-geek.herokuapp.com/'
+const urlBase = 'https://api-alura-geek-m9z68l5ss-ramoscarloseduardo.vercel.app/'
 const mainElement = document.querySelector('main')
 
 const routeHome = async() => {
