@@ -1,5 +1,3 @@
-const urlBase = 'https://api-alura-geek-m9z68l5ss-ramoscarloseduardo.vercel.app/'
-
 const searchInputElement = document.querySelector('[data-search-input]')
 
 searchInputElement.addEventListener('keydown', (event) => {
@@ -8,6 +6,6 @@ searchInputElement.addEventListener('keydown', (event) => {
 
 	if (event.key === 'Enter') {
 
-		window.location.href = `${urlBase}?page=allproducts&q=${searchInputElement.value}`
+		window.location.href = `https://shopalurageek.vercel.app/?page=allproducts&q=${searchInputElement.value}`
 	}
 })
